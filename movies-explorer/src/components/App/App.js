@@ -1,7 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
 import Auth from "../Auth/Auth";
-import ErrorPage from "../ErrorPage/ErrorPage"
 
 function App() {
     return (
@@ -28,7 +27,7 @@ function App() {
                 <Route path="/profile">
 
                 </Route>
-                <Route exact path="/" element={<ErrorPage />} />
+                <Route exact path="/" />
             </Routes>
         </div>
   );
