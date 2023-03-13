@@ -5,7 +5,7 @@ import Promo from "../Promo/Promo";
 
 function App() {
     return (
-        <div className="page">
+        <>
             <Routes>
                 <Route path="/sign-in"
                        element={<Auth header="Рады видеть!" button="Войти" text="Ещё не зарегистрированы?"
@@ -30,7 +30,7 @@ function App() {
                 </Route>
                 <Route exact path="/" element={<Promo/>} />
             </Routes>
-        </div>
+        </>
   );
 }
 
