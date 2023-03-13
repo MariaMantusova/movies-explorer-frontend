@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
 import Auth from "../Auth/Auth";
-import Promo from "../Promo/Promo";
+import AboutProject from "../AboutProject/AboutProject";
 
 function App() {
     return (
@@ -28,7 +28,7 @@ function App() {
                 <Route path="/profile">
 
                 </Route>
-                <Route exact path="/" element={<Promo/>} />
+                <Route exact path="/" element={<AboutProject/>} />
             </Routes>
         </>
   );
