@@ -1,0 +1,20 @@
+.nav-tab {
+    display: flex;
+    gap: 10px;
+    background-color: transparent;
+}
+
+.nav-tab__link {
+    width: 96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: #E8E8E8;
+    text-decoration: none;
+}

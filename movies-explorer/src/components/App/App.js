@@ -1,6 +1,7 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
 import Auth from "../Auth/Auth";
+import Promo from "../Promo/Promo";
 
 function App() {
     return (
@@ -27,7 +28,7 @@ function App() {
                 <Route path="/profile">
 
                 </Route>
-                <Route exact path="/" />
+                <Route exact path="/" element={<Promo/>} />
             </Routes>
         </div>
   );
