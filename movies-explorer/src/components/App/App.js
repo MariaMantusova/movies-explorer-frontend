@@ -2,6 +2,7 @@ import React from "react";
 import {Route, Routes} from "react-router-dom";
 import Auth from "../Auth/Auth";
 import Main from "../Main/Main";
+import Movies from "../Movies/Movies";
 
 function App() {
     return (
@@ -19,9 +20,7 @@ function App() {
                     </Auth>
                 }>
                 </Route>
-                <Route path="/movies">
-
-                </Route>
+                <Route path="/movies" element={<Movies/>} />
                 <Route path="/saved-movies">
 
                 </Route>
