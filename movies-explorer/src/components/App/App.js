@@ -3,6 +3,8 @@ import {Route, Routes} from "react-router-dom";
 import Auth from "../Auth/Auth";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Profile from "../Profile/Profile";
 
 function App() {
     return (
@@ -21,12 +23,8 @@ function App() {
                 }>
                 </Route>
                 <Route path="/movies" element={<Movies/>} />
-                <Route path="/saved-movies">
-
-                </Route>
-                <Route path="/profile">
-
-                </Route>
+                <Route path="/saved-movies" element={<SavedMovies/>} />
+                <Route path="/profile" element={<Profile/>} />
                 <Route exact path="/" element={<Main/>} />
             </Routes>
         </>
