@@ -3,8 +3,8 @@ import "./Techs.css";
 
 function Techs() {
     return (
-        <section className="techs-around">
-            <div className="techs">
+        <div className="techs-around">
+            <section className="techs">
                 <h3 className="techs__header">Технологии</h3>
                 <h2 className="techs__count">7 технологий</h2>
                 <p className="techs__info">На курсе веб-разработки мы освоили технологии, которые применили в дипломном
@@ -27,8 +27,8 @@ function Techs() {
                     <a href="https://www.mongodb.com/" className="techs__name" target="_blank"
                        rel="noreferrer">mongoDB</a>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     )
 }
 
