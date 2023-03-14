@@ -2,7 +2,7 @@ import React from "react";
 import "./Profile.css";
 import Header from "../Header/Header";
 import {NavLink} from "react-router-dom";
-import iconProfile from "../../images/icon-profile.png";
+import iconProfile from "../../images/icon-profile.svg";
 
 function Profile() {
     return(

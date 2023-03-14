@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import "./Movies.css";
 import Header from "../Header/Header";
-import iconProfile from "../../images/icon-profile.png";
+import iconProfile from "../../images/icon-profile.svg";
 
 function Movies() {
     return(
