@@ -1,0 +1,67 @@
+.student {
+    margin: 0 auto;
+    max-width: 1140px;
+    width: 100%;
+    padding: 110px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.student__header {
+    border-bottom: black 1px solid;
+    margin-top: 0;
+    padding-bottom: 23px;
+    font-size: 22px;
+    line-height: 27px;
+    font-weight: 400;
+    margin-bottom: 66px;
+}
+
+.student__container {
+    display: flex;
+    gap: 270px;
+}
+
+.student__info-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 100%;
+}
+
+.student__name {
+    margin: 0;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+}
+
+.student__about {
+    margin-top: 18px;
+    margin-bottom: 26px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.student__info {
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.student__git {
+    margin-top: 99px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.student__image {
+    max-width: 270px;
+    max-height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
