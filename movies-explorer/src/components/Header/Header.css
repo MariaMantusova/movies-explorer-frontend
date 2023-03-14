@@ -54,6 +54,11 @@
     align-items: center;
 }
 
+.header__nav-link_active {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
 .header__nav-link-text {
     margin: 0 0 0 30px;
 }
