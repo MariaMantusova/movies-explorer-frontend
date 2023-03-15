@@ -4,8 +4,9 @@ import "./Movies.css";
 import Header from "../Header/Header";
 import iconProfile from "../../images/icon-profile.svg";
 import SearchForm from "../SearchForm/SearchForm";
-import MoviesCard from "../MoviesCard/MoviesCard";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
+import Footer from "../Footer/Footer";
 
 function Movies() {
     return(
@@ -28,6 +29,8 @@ function Movies() {
             </Header>
             <SearchForm/>
             <MoviesCardList/>
+            <Preloader/>
+            <Footer/>
         </>
     )
 }

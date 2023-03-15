@@ -1,0 +1,21 @@
+.preloader {
+    max-width: 1140px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 61px;
+    padding-bottom: 89px;
+}
+
+.preloader__button {
+    width: 320px;
+    padding: 10px 0;
+    background-color: transparent;
+    border-radius: 8px;
+    border: 1px #E8E8E8 solid;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+}
