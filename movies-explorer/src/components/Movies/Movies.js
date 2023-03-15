@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import "./Movies.css";
 import Header from "../Header/Header";
 import iconProfile from "../../images/icon-profile.svg";
+import SearchForm from "../SearchForm/SearchForm";
 
 function Movies() {
     return(
@@ -23,6 +24,7 @@ function Movies() {
                     </NavLink>
                 </div>
             </Header>
+            <SearchForm/>
         </>
     )
 }
