@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import iconProfile from "../../images/icon-profile.svg";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies() {
     return(
@@ -26,7 +27,7 @@ function Movies() {
                 </div>
             </Header>
             <SearchForm/>
-            <MoviesCard/>
+            <MoviesCardList/>
         </>
     )
 }

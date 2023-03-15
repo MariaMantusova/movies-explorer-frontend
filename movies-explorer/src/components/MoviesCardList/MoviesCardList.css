@@ -1,0 +1,10 @@
+.movies {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-top: 70px;
+    padding-bottom: 10px;
+}
