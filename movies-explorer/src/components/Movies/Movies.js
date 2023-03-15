@@ -28,7 +28,7 @@ function Movies() {
                 </div>
             </Header>
             <SearchForm/>
-            <MoviesCardList/>
+            <MoviesCardList class="movie__save-button_active"/>
             <Preloader/>
             <Footer/>
         </>

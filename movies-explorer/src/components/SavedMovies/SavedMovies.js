@@ -27,7 +27,7 @@ function SavedMovies() {
                 </div>
             </Header>
             <SearchForm/>
-            <MoviesCardList/>
+            <MoviesCardList class="movie__save-button_delete"/>
             <Footer/>
         </>
     )

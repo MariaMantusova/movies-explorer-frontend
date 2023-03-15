@@ -2,16 +2,16 @@ import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
+function MoviesCardList(props) {
     return (
         <section className="movies">
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
+            <MoviesCard class={`${props.class}`}/>
+            <MoviesCard class={`${props.class}`}/>
+            <MoviesCard class={`${props.class}`}/>
+            <MoviesCard class={`${props.class}`}/>
+            <MoviesCard class={`${props.class}`}/>
+            <MoviesCard class={`${props.class}`}/>
+            <MoviesCard class={`${props.class}`}/>
         </section>
     )
 
