@@ -3,6 +3,9 @@ import {NavLink} from "react-router-dom";
 import "./SavedMovies.css";
 import Header from "../Header/Header";
 import iconProfile from "../../images/icon-profile.svg";
+import SearchForm from "../SearchForm/SearchForm";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Footer from "../Footer/Footer";
 
 function SavedMovies() {
     return(
@@ -23,6 +26,9 @@ function SavedMovies() {
                     </NavLink>
                 </div>
             </Header>
+            <SearchForm/>
+            <MoviesCardList/>
+            <Footer/>
         </>
     )
 }
