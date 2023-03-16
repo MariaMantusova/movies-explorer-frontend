@@ -6,6 +6,13 @@
     padding-bottom: 125px;
 }
 
+@media screen and (max-width: 1150px) {
+    .portfolio {
+        max-width: 668px;
+        padding-bottom: 90px;
+    }
+}
+
 .portfolio__header {
     font-weight: 400;
     color: #A0A0A0;
@@ -37,6 +44,12 @@
     line-height: 50px;
     font-weight: 400;
     color: black;
+}
+
+@media screen and (max-width: 1150px) {
+    .portfolio__link-name {
+        font-size: 28px;
+    }
 }
 
 .portfolio__link-vector {

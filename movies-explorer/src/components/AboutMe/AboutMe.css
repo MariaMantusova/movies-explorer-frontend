@@ -7,6 +7,13 @@
     flex-direction: column;
 }
 
+@media screen and (max-width: 1150px) {
+    .student {
+        max-width: 668px;
+        padding: 90px 0;
+    }
+}
+
 .student__header {
     border-bottom: black 1px solid;
     margin-top: 0;
@@ -20,6 +27,12 @@
 .student__container {
     display: flex;
     gap: 270px;
+}
+
+@media screen and (max-width: 1150px) {
+    .student__container {
+        gap: 49px;
+    }
 }
 
 .student__info-container {
@@ -36,6 +49,13 @@
     line-height: 58px;
 }
 
+@media screen and (max-width: 1150px) {
+    .student__name {
+        font-size: 40px;
+        line-height: 40px;
+    }
+}
+
 .student__about {
     margin-top: 18px;
     margin-bottom: 26px;
@@ -44,11 +64,27 @@
     font-weight: 500;
 }
 
+@media screen and (max-width: 1150px) {
+    .student__about {
+        margin-top: 16px;
+        margin-bottom: 20px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
 .student__info {
     margin: 0;
     font-size: 14px;
     line-height: 22px;
     font-weight: 400;
+}
+
+@media screen and (max-width: 1150px) {
+    .student__info {
+        font-size: 12px;
+        line-height: 18px;
+    }
 }
 
 .student__git {
@@ -59,9 +95,23 @@
     line-height: 17px;
 }
 
+@media screen and (max-width: 1150px) {
+    .student__git {
+        margin-top: 87px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
+
 .student__image {
     max-width: 270px;
     max-height: 100%;
     border-radius: 10px;
     object-fit: cover;
+}
+
+@media screen and (max-width: 1150px) {
+    .student__image {
+        max-width: 255px;
+    }
 }
