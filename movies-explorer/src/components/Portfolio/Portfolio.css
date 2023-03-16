@@ -13,6 +13,13 @@
     }
 }
 
+@media screen and (max-width: 695px) {
+    .portfolio {
+        max-width: 292px;
+        padding-bottom: 70px;
+    }
+}
+
 .portfolio__header {
     font-weight: 400;
     color: #A0A0A0;
@@ -20,6 +27,13 @@
     line-height: 20px;
     margin-bottom: 30px;
     margin-top: 0;
+}
+
+@media screen and (max-width: 695px) {
+    .portfolio__header {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
 }
 
 .portfolio__links {
@@ -52,7 +66,21 @@
     }
 }
 
+@media screen and (max-width: 695px) {
+    .portfolio__link-name {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
 .portfolio__link-vector {
     width: 20px;
     height: 20px;
+}
+
+@media screen and (max-width: 695px) {
+    .portfolio__link-vector {
+        width: 10px;
+        height: 15px;
+    }
 }

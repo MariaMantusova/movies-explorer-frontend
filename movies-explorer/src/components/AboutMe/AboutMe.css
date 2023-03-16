@@ -14,6 +14,13 @@
     }
 }
 
+@media screen and (max-width: 695px) {
+    .student {
+        max-width: 292px;
+        padding: 70px 0;
+    }
+}
+
 .student__header {
     border-bottom: black 1px solid;
     margin-top: 0;
@@ -22,6 +29,15 @@
     line-height: 27px;
     font-weight: 400;
     margin-bottom: 66px;
+}
+
+@media screen and (max-width: 695px) {
+    .student__header {
+        margin-bottom: 60px;
+        font-size: 18px;
+        line-height: 22px;
+        padding-bottom: 28px;
+    }
 }
 
 .student__container {
@@ -35,11 +51,25 @@
     }
 }
 
+@media screen and (max-width: 695px) {
+    .student__container {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 40px;
+    }
+}
+
 .student__info-container {
     display: flex;
     flex-direction: column;
     max-width: 600px;
     width: 100%;
+}
+
+@media screen and (max-width: 695px) {
+    .student__info-container {
+        max-width: 292px;
+    }
 }
 
 .student__name {
@@ -53,6 +83,13 @@
     .student__name {
         font-size: 40px;
         line-height: 40px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .student__name {
+        font-size: 30px;
+        line-height: 36px;
     }
 }
 
@@ -73,6 +110,14 @@
     }
 }
 
+@media screen and (max-width: 695px) {
+    .student__about {
+        margin-top: 20px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
+
 .student__info {
     margin: 0;
     font-size: 14px;
@@ -84,6 +129,13 @@
     .student__info {
         font-size: 12px;
         line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .student__info {
+        font-size: 11px;
+        line-height: 16px;
     }
 }
 
@@ -103,8 +155,14 @@
     }
 }
 
+@media screen and (max-width: 695px) {
+    .student__git {
+        margin-top: 40px;
+    }
+}
+
 .student__image {
-    max-width: 270px;
+    width: 270px;
     max-height: 100%;
     border-radius: 10px;
     object-fit: cover;
@@ -112,6 +170,13 @@
 
 @media screen and (max-width: 1150px) {
     .student__image {
-        max-width: 255px;
+        width: 255px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .student__image {
+        width: 292px;
+        height: 352px;
     }
 }
