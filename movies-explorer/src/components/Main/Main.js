@@ -9,6 +9,18 @@ import Portfolio from "../Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
 function Main() {
+    const onClickAboutProject = () => {
+        window.location.href = "#about-project";
+    };
+
+    const onClickTechs = () => {
+        window.location.href = "#techs";
+    };
+
+    const onClickStudent = () => {
+        window.location.href = "#student";
+    };
+
     return (
         <>
             <Header>
@@ -18,7 +30,8 @@ function Main() {
                 </div>
             </Header>
             <main>
-                <Promo/>
+                <Promo onClickAboutProject={onClickAboutProject} onClickTechs={onClickTechs}
+                       onClickStudent={onClickStudent}/>
                 <AboutProject/>
                 <Techs/>
                 <AboutMe/>
