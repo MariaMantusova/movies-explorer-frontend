@@ -5,7 +5,7 @@ import iconProfile from "../../images/icon-profile.svg";
 
 function HeaderLinks() {
     return (
-        <div className="header__links-container">
+        <nav className="header__links-container">
             <NavLink to="/movies"
                      className={({isActive}) => `header__nav-link ${isActive ? "header__nav-link_active" : ""}`}>Фильмы</NavLink>
             <NavLink to="/saved-movies"
@@ -18,7 +18,7 @@ function HeaderLinks() {
                     <img className="header__nav-link-icon" src={iconProfile} alt="Иконка профиля"/>
                 </div>
             </NavLink>
-        </div>
+        </nav>
     )
 }
 

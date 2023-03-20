@@ -6,7 +6,7 @@ import "./Auth.css";
 function Auth(props) {
     return (
         <section className="auth">
-            <Link to="/project">
+            <Link to="/">
                 <img src={logoImage} alt="Логотип сайта" className="auth__logo"/>
             </Link>
             <h1 className="auth__header">{props.header}</h1>
@@ -22,7 +22,7 @@ function Auth(props) {
             </form>
             <div className="auth__register">
                 <p className="auth__text">{props.text}</p>
-                <Link to="/sign-up" className="auth__link">{props.link}</Link>
+                <Link to={props.path} className="auth__link">{props.link}</Link>
             </div>
         </section>
     )
