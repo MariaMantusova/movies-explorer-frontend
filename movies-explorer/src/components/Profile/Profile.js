@@ -1,15 +1,15 @@
 import React from "react";
 import "./Profile.css";
 import {Link} from "react-router-dom";
-import Header from "../Header/Header";
-import HeaderLinks from "../Header/HeaderLinks";
+import "../Header/Header.css";
+import HeaderMobile from "../Header/HeaderMobile";
+import HeaderToMobile from "../Header/HeaderToMobile";
 
 function Profile() {
     return (
         <>
-            <Header>
-                <HeaderLinks/>
-            </Header>
+            <HeaderToMobile/>
+            <HeaderMobile/>
             <section className="profile">
                 <h1 className="profile__header">Привет, Мария!</h1>
                 <form className="profile__form">

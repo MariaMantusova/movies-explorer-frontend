@@ -1,8 +1,14 @@
 .header-mobile__links-around {
     background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
+    display: none;
     justify-content: end;
     height: 100vh;
+}
+
+@media screen and (max-width: 1150px) {
+    .header-mobile__links-around {
+        display: flex;
+    }
 }
 
 .header-mobile__links {
@@ -38,7 +44,7 @@
 
 .header-mobile__nav-link_active {
     padding-bottom: 4px;
-    text-decoration: underline;
+    border-bottom: black 1px solid;
 }
 
 .header-mobile__nav-link-profile {
