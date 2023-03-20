@@ -1,18 +1,11 @@
 .header-mobile__links-around {
     background-color: rgba(0, 0, 0, 0.3);
-    display: none;
     justify-content: end;
     height: 100vh;
     position: absolute;
     right: 0;
     width: 100%;
     top: 0;
-}
-
-@media screen and (max-width: 1150px) {
-    .header-mobile__links-around {
-        display: flex;
-    }
 }
 
 .header-mobile__links {

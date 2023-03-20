@@ -1,0 +1,15 @@
+.header-burger {
+    display: none;
+}
+
+.burger {
+    height: 38px;
+    width: 38px;
+}
+
+@media screen and (max-width: 1150px) {
+    .header-burger {
+        display: flex;
+        max-width: 708px;
+    }
+}
