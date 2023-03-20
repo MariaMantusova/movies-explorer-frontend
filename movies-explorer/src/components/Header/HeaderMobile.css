@@ -3,6 +3,10 @@
     display: none;
     justify-content: end;
     height: 100vh;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    top: 0;
 }
 
 @media screen and (max-width: 1150px) {
@@ -14,6 +18,7 @@
 .header-mobile__links {
     max-width: 520px;
     background-color: #FFFFFF;
+    z-index: 2;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -79,4 +84,12 @@
     height: 11px;
     width: 11px;
     object-fit: contain;
+}
+
+.burger-close {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 23px;
+    right: 23px;
 }
