@@ -6,6 +6,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import HeaderMobile from "../Header/HeaderMobile";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/profile" element={<Profile/>} />
                 <Route path="/mobile" element={<HeaderMobile/>} />
                 <Route exact path="/" element={<Main/>} />
+                <Route path="*" element={<ErrorPage/>} />
             </Routes>
         </>
   );
