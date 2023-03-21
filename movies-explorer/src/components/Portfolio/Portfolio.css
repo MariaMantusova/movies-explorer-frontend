@@ -58,6 +58,7 @@
     line-height: 50px;
     font-weight: 400;
     color: black;
+    transition: opacity 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 1150px) {
@@ -76,6 +77,7 @@
 .portfolio__link-vector {
     width: 20px;
     height: 20px;
+    transition: transform 0.4s ease-in-out;
 }
 
 @media screen and (max-width: 695px) {
@@ -83,4 +85,12 @@
         width: 10px;
         height: 15px;
     }
+}
+
+.portfolio__link-name:hover {
+    opacity: 0.6;
+}
+
+.portfolio__link-vector:hover {
+    transform: scale(1.5);
 }

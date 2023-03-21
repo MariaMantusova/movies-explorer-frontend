@@ -141,10 +141,16 @@
     font-size: 14px;
     line-height: 17px;
     font-weight: 400;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 1150px) {
     .techs__name {
         width: 84px;
     }
+}
+
+.techs__name:hover {
+    background-color: black;
+    color: #FFFFFF;
 }

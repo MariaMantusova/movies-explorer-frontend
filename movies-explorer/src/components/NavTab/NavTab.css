@@ -23,6 +23,7 @@
     border-radius: 10px;
     background-color: #E8E8E8;
     text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 695px) {
@@ -32,4 +33,8 @@
         width: 82px;
         border-radius: 6px;
     }
+}
+
+.nav-tab__link:hover {
+    background-color: black;
 }

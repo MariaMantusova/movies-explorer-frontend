@@ -85,6 +85,7 @@
     line-height: 16px;
     text-decoration: none;
     color: black;
+    transition: opacity 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 695px) {
@@ -92,4 +93,8 @@
         font-size: 12px;
         line-height: 15px;
     }
+}
+
+.footer__link:hover {
+    opacity: 0.6;
 }
