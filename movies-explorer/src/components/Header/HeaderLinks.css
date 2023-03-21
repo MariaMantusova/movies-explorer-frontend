@@ -13,6 +13,11 @@
     color: black;
     gap: 13px;
     align-items: center;
+    transition: font-weight 0.3s ease-in-out;
+}
+
+.header__nav-link:hover {
+    font-weight: 500;
 }
 
 .header__nav-link_active {

@@ -78,6 +78,12 @@
     background-size: cover;
     border: none;
     padding: 0;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out;
+}
+
+.movie__save-button:hover {
+    transform: scale(1.2);
 }
 
 @media screen and (max-width: 695px) {

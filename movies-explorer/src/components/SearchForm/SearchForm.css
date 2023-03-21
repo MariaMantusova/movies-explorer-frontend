@@ -47,7 +47,13 @@
     background-repeat: no-repeat;
     background-color: transparent;
     border: none;
+    cursor: pointer;
     margin-right: 24px;
+    transition: transform 0.4s ease-in-out;
+}
+
+.search__button-magnifier:hover {
+    transform: scale(1.2);
 }
 
 @media screen and (max-width: 695px) {
@@ -81,4 +87,10 @@
     font-size: 11px;
     line-height: 18px;
     text-align: center;
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.search__button:hover {
+    opacity: 0.6;
 }
