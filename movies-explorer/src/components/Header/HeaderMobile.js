@@ -5,12 +5,16 @@ import iconProfile from "../../images/icon-profile.svg";
 import {GrClose} from "react-icons/gr";
 
 function HeaderMobile(props) {
+    const closeBurger = () => {
+        props.close();
+    }
+
     return (
         <>
             {props.opened &&
             <div className="header-mobile__links-around">
                 <nav className="header-mobile__links">
-                    <GrClose className="burger-close"/>
+                    <GrClose className="burger-close" onClick={() => closeBurger()}/>
                     <div className="header-mobile__links-container">
                         <NavLink to="/"
                                  className={({isActive}) => `header-mobile__nav-link ${isActive ? "header-mobile__nav-link_active" : ""}`}>Главная</NavLink>

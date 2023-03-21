@@ -26,6 +26,7 @@
 
 .header-to-mobile {
     display: flex;
+    padding: 0;
 }
 
 @media screen and (max-width: 1150px) {
