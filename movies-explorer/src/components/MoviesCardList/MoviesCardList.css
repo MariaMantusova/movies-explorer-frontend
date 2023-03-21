@@ -5,20 +5,17 @@
     width: 100%;
     max-width: 1140px;
     margin: 0 auto;
-    padding-top: 70px;
     padding-bottom: 10px;
 }
 
 @media screen and (max-width: 1150px) {
     .movies {
-        padding-top: 60px;
         padding-bottom: 30px;
     }
 }
 
 @media screen and (max-width: 695px) {
     .movies {
-        padding-top: 40px;
         padding-bottom: 20px;
     }
 }
