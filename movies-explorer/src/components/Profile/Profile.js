@@ -3,11 +3,13 @@ import "./Profile.css";
 import {Link} from "react-router-dom";
 import "../Header/Header.css";
 import HeaderToMobile from "../Header/HeaderToMobile";
+import HeaderBurger from "../Header/HeaderBurger";
 
 function Profile() {
     return (
         <>
             <HeaderToMobile/>
+            <HeaderBurger/>
             <section className="profile">
                 <h1 className="profile__header">Привет, Мария!</h1>
                 <form className="profile__form">

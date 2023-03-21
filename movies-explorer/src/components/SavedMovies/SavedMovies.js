@@ -3,15 +3,18 @@ import "./SavedMovies.css";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
 import HeaderToMobile from "../Header/HeaderToMobile";
+import HeaderBurger from "../Header/HeaderBurger";
 
 function SavedMovies() {
     return (
         <>
             <HeaderToMobile/>
-            <SearchForm/>
-            <MoviesCardList class="movie__save-button_delete"/>
+            <HeaderBurger/>
+            <section className="saved-movies">
+                <SearchForm/>
+                <MoviesCardList class="movie__save-button_delete"/>
+            </section>
             <Footer/>
         </>
     )

@@ -10,6 +10,7 @@
 @media screen and (max-width: 1150px) {
     .header-burger {
         display: flex;
-        max-width: 708px;
+        position: relative;
+        padding: 0;
     }
 }

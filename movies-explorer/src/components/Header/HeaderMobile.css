@@ -1,11 +1,13 @@
 .header-mobile__links-around {
+    display: flex;
     background-color: rgba(0, 0, 0, 0.3);
     justify-content: end;
     height: 100vh;
     position: absolute;
     right: 0;
-    width: 100%;
+    width: 100vw;
     top: 0;
+    z-index: 1;
 }
 
 .header-mobile__links {
@@ -17,6 +19,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    border: none;
 }
 
 .header-mobile__links-container {
@@ -25,6 +29,7 @@
     flex-direction: column;
     gap: 28px;
     align-items: center;
+    border: none;
 }
 
 @media screen and (max-width: 695px) {
