@@ -21,3 +21,5 @@ ___
 - Менять информацию о себе
 
 [Ссылка на фронт](https://aboutfilms.nomoredomains.work/)
+
+[Ссылка на макет](https://disk.yandex.ru/d/33tshkilDqrm1w)
