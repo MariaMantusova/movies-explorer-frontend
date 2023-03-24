@@ -5,6 +5,12 @@
 .burger {
     height: 38px;
     width: 38px;
+    cursor: pointer;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.burger:hover {
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {

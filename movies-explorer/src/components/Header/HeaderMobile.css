@@ -90,4 +90,10 @@
     height: 22px;
     top: 23px;
     right: 23px;
+    cursor: pointer;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.burger-close:hover {
+    opacity: 0.6;
 }
