@@ -5,11 +5,11 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 function SearchForm() {
     return (
         <section className="search">
-            <div className="search__container">
+            <form className="search__container">
                 <button className="search__button-magnifier"></button>
-                <h1 className="search__header">Фильм</h1>
+                <input className="search__header" placeholder="Фильм" />
                 <button className="search__button">Найти</button>
-            </div>
+            </form>
             <FilterCheckbox/>
         </section>
     )

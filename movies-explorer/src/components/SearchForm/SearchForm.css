@@ -68,6 +68,8 @@
     color: #A0A0A0;
     font-weight: 500;
     margin: 0;
+    border: none;
+    text-align: center;
 }
 
 @media screen and (max-width: 695px) {

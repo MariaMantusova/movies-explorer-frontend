@@ -40,6 +40,9 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .portfolio__link {

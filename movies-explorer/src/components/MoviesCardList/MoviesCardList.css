@@ -1,7 +1,6 @@
 .movies {
     display: flex;
     flex-direction: column;
-    row-gap: 40px;
     width: 100%;
     max-width: 1140px;
     margin: 0 auto;
@@ -18,4 +17,13 @@
     .movies {
         padding-bottom: 20px;
     }
+}
+
+.movies__items {
+    list-style: none;
+    margin: 0;
+    row-gap: 40px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
