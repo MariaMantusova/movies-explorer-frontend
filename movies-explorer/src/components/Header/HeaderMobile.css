@@ -1,9 +1,9 @@
 .header-mobile__links-around {
     display: flex;
     background-color: rgba(0, 0, 0, 0.3);
-    justify-content: end;
+    justify-content: flex-end;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     right: 0;
     width: 100vw;
     top: 0;

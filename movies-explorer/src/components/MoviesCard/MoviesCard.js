@@ -9,7 +9,7 @@ function MoviesCard(props) {
                 <p className="movie__duration">1ч 35м</p>
                 <button className={`movie__save-button ${props.class}`}></button>
             </div>
-            <img className="movie__image" src="https://netbasequid.com/wp-content/uploads/Hello-Kitty.png" alt="hello-kitty"/>
+            <img className="movie__image" src="https://4lapy.ru/resize/800x463/upload/medialibrary/84c/84c48b8e8e4b57579667392f8936e5ba.jpg" alt="фото фильма"/>
         </section>
     )
 }

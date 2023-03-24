@@ -29,7 +29,7 @@
     padding: 0;
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 768px) {
     .header-to-mobile {
         display: none;
     }
