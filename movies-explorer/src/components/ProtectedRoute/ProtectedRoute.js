@@ -6,4 +6,4 @@ function ProtectedRoute({ authorized, children }) {
     }
     return children
 }
-export default ProtectedRoute
+export default ProtectedRoute;
