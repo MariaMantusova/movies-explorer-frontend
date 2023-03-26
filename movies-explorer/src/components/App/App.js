@@ -7,9 +7,11 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import ProtectedRoute from "../ProtectedRoute";
 
 function App() {
     const [currentUser, setCurrentUser] = React.useState({});
+    const [authorized, setAuthorized] = React.useState(false);
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -26,14 +28,26 @@ function App() {
                     </Auth>
                 }>
                 </Route>
-                <Route path="/movies" element={<Movies/>} />
-                <Route path="/saved-movies" element={<SavedMovies/>} />
-                <Route path="/profile" element={<Profile/>} />
-                <Route exact path="/" element={<Main/>} />
-                <Route path="*" element={<ErrorPage/>} />
+                <Route path="/movies" element={
+                    <ProtectedRoute authorized={authorized}>
+                        <Movies/>
+                    </ProtectedRoute>}
+                />
+                <Route path="/saved-movies" element={
+                    <ProtectedRoute authorized={authorized}>
+                        <SavedMovies/>
+                    </ProtectedRoute>}
+                />
+                <Route path="/profile" element={
+                    <ProtectedRoute authorized={authorized}>
+                        <Profile/>
+                    </ProtectedRoute>}
+                />
+                <Route exact path="/" element={<Main/>}/>
+                <Route path="*" element={<ErrorPage/>}/>
             </Routes>
         </CurrentUserContext.Provider>
-  );
+    );
 }
 
 export default App;
