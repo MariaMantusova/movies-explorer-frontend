@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import Auth from "../Auth/Auth";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -8,8 +9,10 @@ import Profile from "../Profile/Profile";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
 function App() {
+    const [currentUser, setCurrentUser] = React.useState({});
+
     return (
-        <>
+        <CurrentUserContext.Provider value={currentUser}>
             <Routes>
                 <Route path="/sign-in"
                        element={<Auth header="Рады видеть!" button="Войти" text="Ещё не зарегистрированы?"
@@ -29,7 +32,7 @@ function App() {
                 <Route exact path="/" element={<Main/>} />
                 <Route path="*" element={<ErrorPage/>} />
             </Routes>
-        </>
+        </CurrentUserContext.Provider>
   );
 }
 
