@@ -1,0 +1,137 @@
+.profile {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 420px;
+    width: 100%;
+    align-items: center;
+    padding-top: 74px;
+    padding-bottom: 70px;
+    position: relative;
+}
+
+@media screen and (max-width: 1150px) {
+    .profile {
+        padding-top: 236px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .profile {
+        padding-top: 70px;
+        max-width: 260px;
+        padding-bottom: 40px;
+    }
+}
+
+.profile__header {
+    margin: 0;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.profile__form {
+    margin-top: 123px;
+    display: flex;
+    flex-direction: column;
+    max-width: 410px;
+    width: 100%;
+}
+
+@media screen and (max-width: 1150px) {
+    .profile__form {
+        margin-top: 96px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .profile__form {
+        margin-top: 80px;
+    }
+}
+
+.profile__input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile__input-container_type_top {
+    padding-bottom: 16px;
+    border-bottom: 1px #E8E8E8 solid;
+}
+
+.profile__input-container_type_bottom {
+    margin-top: 17px;
+    margin-bottom: 220px;
+}
+
+@media screen and (max-width: 1150px) {
+    .profile__input-container_type_bottom {
+        margin-bottom: 210px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .profile__input-container_type_bottom {
+        margin-bottom: 379px;
+    }
+}
+
+.profile__label {
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 500;
+}
+
+.profile__input {
+    width: 80%;
+    text-align: end;
+    border: none;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 400;
+}
+
+.profile__button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.profile__button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 695px) {
+    .profile__button {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.profile__link {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #FF4062;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.profile__link:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 695px) {
+    .profile__link {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

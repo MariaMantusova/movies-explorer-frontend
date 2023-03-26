@@ -1,0 +1,44 @@
+.filter {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.filter__checkbox-custom {
+    height: 20px;
+    width: 36px;
+    background-image: url("../../images/small-tumb.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out;
+}
+
+.filter__checkbox-custom:hover {
+    transform: scale(1.1);
+}
+
+.filter__checkbox-custom_disabled {
+    height: 22px;
+    background-image: url("../../images/small-tumb-off.svg");
+}
+
+.filter__checkbox {
+    display: none;
+}
+
+.filter__text {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0;
+}
+
+@media screen and (max-width: 695px) {
+    .filter__text {
+        font-size: 11px
+    }
+}

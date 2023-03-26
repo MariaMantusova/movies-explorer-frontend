@@ -1,0 +1,155 @@
+.auth {
+    max-width: 396px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 500px) {
+    .auth {
+        padding-top: 56px;
+        max-width: 260px;
+        align-items: center;
+    }
+}
+
+.auth__logo {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 38px;
+}
+
+@media screen and (max-width: 500px) {
+    .auth__logo {
+        margin-bottom: 48px;
+    }
+}
+
+.auth__header {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+@media screen and (max-width: 500px) {
+    .auth__header {
+        margin-bottom: 80px;
+        text-align: center;
+    }
+}
+
+.auth__form {
+    display: flex;
+    flex-direction: column;
+    width: 396px;
+}
+
+@media screen and (max-width: 500px) {
+    .auth__form {
+        width: 260px;
+    }
+}
+
+.auth__label {
+    color: #A0A0A0;
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 10px;
+}
+
+.auth__input {
+    width: 100%;
+    background-color: #F9F9F9;
+    border: none;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 14px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.auth__input-error {
+    line-height: 12px;
+    font-size: 10px;
+    color: #FF4062;
+    margin-top: 12px;
+}
+
+.auth__button {
+    background-color: black;
+    color: #FFFFFF;
+    border-radius: 3px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    padding-top: 13px;
+    padding-bottom: 15px;
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .auth__button {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.auth__button:hover {
+    opacity: 0.6;
+}
+
+.auth__button_type_register {
+    margin-top: 69px;
+}
+
+.auth__button_type_login {
+    margin-top: 159px;
+}
+
+.auth__register {
+    display: flex;
+    align-self: center;
+    gap: 6px;
+    margin-top: 16px;
+}
+
+.auth__text {
+    margin: 0;
+    color: #A0A0A0;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 500px) {
+    .auth__text {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.auth__link {
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+    color: black;
+    transition: opacity 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 500px) {
+    .auth__link {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.auth__link:hover {
+    opacity: 0.6;
+}

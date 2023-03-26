@@ -1,0 +1,29 @@
+.movies {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 1150px) {
+    .movies {
+        padding-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    .movies {
+        padding-bottom: 20px;
+    }
+}
+
+.movies__items {
+    list-style: none;
+    margin: 0;
+    row-gap: 40px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
