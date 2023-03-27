@@ -13,10 +13,11 @@ function Auth(props) {
             <form className="auth__form">
                 {props.children}
                 <label className="auth__label">E-mail</label>
-                <input className="auth__input"/>
+                <input className="auth__input" type="email"
+                       pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" required/>
                 <p className="auth__input-error"></p>
                 <label className="auth__label">Пароль</label>
-                <input className="auth__input"/>
+                <input className="auth__input" type="password" required/>
                 <p className="auth__input-error"></p>
                 <button className={`auth__button ${props.class}`}>{props.button}</button>
             </form>

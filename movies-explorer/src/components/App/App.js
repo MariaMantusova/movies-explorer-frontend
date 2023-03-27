@@ -23,7 +23,7 @@ function App() {
                     <Auth header="Добро пожаловать!" button="Зарегистрироваться" text="Уже зарегистрированы?"
                           link="Войти" class="auth__button_type_register" path="/sign-in">
                         <label className="auth__label">Имя</label>
-                        <input className="auth__input"/>
+                        <input className="auth__input" pattern="^[a-zа-яё\-\s]+" required/>
                         <p className="auth__input-error"></p>
                     </Auth>
                 }>
