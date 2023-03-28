@@ -11,11 +11,30 @@ class MainApi {
             body: JSON.stringify({
                 email: email,
                 password: password,
-                name: name,
+                name: name
             })
         })
             .then((res) => {
                 if (res.ok || res.status === 409) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err));
+    };
+
+    authorizeUser(password, email) {
+        return fetch(`${this._url}/signin`, {
+            method: 'POST',
+            headers: this._header,
+            body: JSON.stringify({
+                password: password,
+                email: email
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
                     return res.json();
                 } else {
                     return Promise.reject(new Error(res.status.toString()));

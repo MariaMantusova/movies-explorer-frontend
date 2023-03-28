@@ -17,7 +17,7 @@ function App() {
     const [authorized, setAuthorized] = React.useState(false);
 
 
-    function handleRegister(password, email, name,setData, data) {
+    function handleRegister(password, email, name, setData, data) {
         mainApi.registerUser(password, email, name)
             .then((res) => {
                 if (res.statusCode !== 200) {
@@ -36,11 +36,25 @@ function App() {
             })
     }
 
+    function handleLogin(setData, data) {
+        mainApi.authorizeUser(data.password, data.email)
+            .then((res) => {
+                if (res.token) {
+                    setData({email: '', password: ''})
+                    localStorage.setItem('jwt', res.token);
+                    navigate("/movies");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
                 <Route path="/sign-in"
-                       element={<Login/>}/>
+                       element={<Login handleLogin={handleLogin}/>}/>
                 <Route path="/sign-up" element={<Register handleRegister={handleRegister}/>}>
                 </Route>
                 <Route path="/movies" element={

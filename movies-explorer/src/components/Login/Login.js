@@ -10,8 +10,11 @@ function Login(props) {
     function handleSubmitLogin(evt) {
         evt.preventDefault();
 
-        let {email, password, name} = dataLogin;
-        props.handleLogin(password, email, name, setDataLogin, dataLogin);
+        if (!dataLogin.password || !dataLogin.email) {
+            return
+        }
+
+        props.handleLogin(setDataLogin, dataLogin);
     }
 
     function handleChange(evt) {
