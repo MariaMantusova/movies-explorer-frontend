@@ -10,14 +10,14 @@ function Auth(props) {
                 <img src={logoImage} alt="Логотип сайта" className="auth__logo"/>
             </Link>
             <h1 className="auth__header">{props.header}</h1>
-            <form className="auth__form">
+            <form className="auth__form" onSubmit={props.submit} >
                 {props.children}
                 <label className="auth__label">E-mail</label>
-                <input className="auth__input" type="email"
-                       pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" required/>
+                <input className="auth__input" type="email" value={props.data.email || ""} name="email"
+                       pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" onChange={props.inputsChanges} required/>
                 <p className="auth__input-error"></p>
                 <label className="auth__label">Пароль</label>
-                <input className="auth__input" type="password" required/>
+                <input className="auth__input" name="password" type="password" onChange={props.inputsChanges} value={props.data.password || ""} required/>
                 <p className="auth__input-error"></p>
                 <button className={`auth__button ${props.class}`}>{props.button}</button>
             </form>

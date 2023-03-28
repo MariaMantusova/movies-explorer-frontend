@@ -1,32 +1,47 @@
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
-import Auth from "../Auth/Auth";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Register from "../Register/Register";
+import {mainApi} from "../../utils/MainApi";
+import Login from "../Login/Login";
 
 function App() {
+    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = React.useState({});
     const [authorized, setAuthorized] = React.useState(false);
+
+
+    function handleRegister(password, email, name,setData, data) {
+        mainApi.registerUser(password, email, name)
+            .then((res) => {
+                if (res.statusCode !== 200) {
+                    setData({
+                        ...data
+                    });
+                    navigate("/sign-in");
+                }
+
+                if (res && res.message) {
+                    console.log(res.message);
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
                 <Route path="/sign-in"
-                       element={<Auth header="Рады видеть!" button="Войти" text="Ещё не зарегистрированы?"
-                                      link="Регистрация" class="auth__button_type_login" path="/sign-up"/>}/>
-                <Route path="/sign-up" element={
-                    <Auth header="Добро пожаловать!" button="Зарегистрироваться" text="Уже зарегистрированы?"
-                          link="Войти" class="auth__button_type_register" path="/sign-in">
-                        <label className="auth__label">Имя</label>
-                        <input className="auth__input" pattern="^[a-zа-яё\-\s]+" required/>
-                        <p className="auth__input-error"></p>
-                    </Auth>
-                }>
+                       element={<Login/>}/>
+                <Route path="/sign-up" element={<Register handleRegister={handleRegister}/>}>
                 </Route>
                 <Route path="/movies" element={
                     <ProtectedRoute authorized={authorized}>
