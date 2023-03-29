@@ -4,8 +4,32 @@ import {Link} from "react-router-dom";
 import "../Header/Header.css";
 import HeaderToMobile from "../Header/HeaderToMobile";
 import HeaderBurger from "../Header/HeaderBurger";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
-function Profile() {
+function Profile(props) {
+    const currentUser = React.useContext(CurrentUserContext);
+    const [name, setName] = React.useState('');
+    const [email, setEmail] = React.useState('');
+
+    React.useEffect(() => {
+        setName(currentUser.name);
+        setEmail(currentUser.email);
+    }, [currentUser]);
+
+    function handleChangeName(evt) {
+        setName(evt.target.value);
+    }
+
+    function handleChangeEmail(evt) {
+        setEmail(evt.target.value);
+    }
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+
+        props.onChangingInfo(name, email);
+    }
+
     function logOut() {
         localStorage.removeItem('jwt');
     }
@@ -15,15 +39,15 @@ function Profile() {
             <HeaderToMobile/>
             <HeaderBurger/>
             <section className="profile">
-                <h1 className="profile__header">Привет, Мария!</h1>
-                <form className="profile__form">
+                <h1 className="profile__header">Привет, {name}!</h1>
+                <form className="profile__form" onSubmit={handleSubmit}>
                     <div className="profile__input-container profile__input-container_type_top">
                         <label className="profile__label">Имя</label>
-                        <input className="profile__input" type="text" defaultValue="Мария"/>
+                        <input className="profile__input" type="text" onChange={handleChangeName} value={name || ""}/>
                     </div>
                     <div className="profile__input-container profile__input-container_type_bottom">
                         <label className="profile__label">E-mail</label>
-                        <input className="profile__input" type="email" defaultValue="pochta@yandex.ru"/>
+                        <input className="profile__input" type="email" onChange={handleChangeEmail} value={email || ""}/>
                     </div>
                     <button className="profile__button">Редактировать</button>
                 </form>

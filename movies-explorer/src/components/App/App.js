@@ -16,11 +16,28 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState({});
     const [authorized, setAuthorized] = React.useState(false);
 
+    React.useEffect(() => {
+        authorized && mainApi.getUserInfo()
+            .then((user) => {
+                setCurrentUser(user.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [authorized]);
+
+    function handleUpdateUser(name, email) {
+        mainApi.changeUserInfo(name, email)
+            .then((userInfo) => {
+                setCurrentUser(userInfo);
+            })
+            .catch((err) => console.log(err))
+    }
 
     function handleRegister(password, email, name, setData, data) {
         mainApi.registerUser(password, email, name)
             .then((res) => {
-                if (res.statusCode !== 200) {
+                if (res.statusCode !== 400) {
                     setData({
                         ...data
                     });
@@ -87,7 +104,7 @@ function App() {
                 />
                 <Route path="/profile" element={
                     <ProtectedRoute authorized={authorized}>
-                        <Profile/>
+                        <Profile onChangingInfo={handleUpdateUser}/>
                     </ProtectedRoute>}
                 />
                 <Route exact path="/" element={<Main/>}/>

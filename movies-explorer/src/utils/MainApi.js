@@ -2,6 +2,7 @@ class MainApi {
     constructor(config) {
         this._url = config.url;
         this._header = config.headers;
+        this._token = '';
     }
 
     registerUser(password, email, name) {
@@ -59,6 +60,55 @@ class MainApi {
             })
             .catch((err) => console.log(err));
     };
+
+    getUserInfo() {
+        return fetch(`${this._url}/users/me`, {
+            headers: {
+                Authorization: this._getAuthHeader()
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => Promise.reject(err));
+    }
+
+    changeUserInfo(name, email) {
+        return fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this._getAuthHeader()
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => Promise.reject(err));
+    }
+
+    _getAuthHeader() {
+        if (this._token !== '') {
+            return `Bearer ${this._token}`
+        }
+        if (localStorage.getItem("jwt") !== '') {
+            this._token = localStorage.getItem("jwt")
+            return `Bearer ${this._token}`
+        }
+        return ''
+    }
 
 }
 
