@@ -42,6 +42,24 @@ class MainApi {
             })
             .catch((err) => console.log(err));
     };
+
+    validityCheck(JWT) {
+        return fetch(`${this._url}/users/me`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${JWT}`
+            }
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err));
+    };
+
 }
 
 const mainApiOption = {

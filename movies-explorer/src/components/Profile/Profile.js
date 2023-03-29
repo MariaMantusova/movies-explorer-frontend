@@ -6,6 +6,10 @@ import HeaderToMobile from "../Header/HeaderToMobile";
 import HeaderBurger from "../Header/HeaderBurger";
 
 function Profile() {
+    function logOut() {
+        localStorage.removeItem('jwt');
+    }
+
     return (
         <>
             <HeaderToMobile/>
@@ -23,7 +27,7 @@ function Profile() {
                     </div>
                     <button className="profile__button">Редактировать</button>
                 </form>
-                <Link to="/" className="profile__link">Выйти из аккаунта</Link>
+                <Link to="/" className="profile__link" onClick={logOut}>Выйти из аккаунта</Link>
             </section>
         </>
     )

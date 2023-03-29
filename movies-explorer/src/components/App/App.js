@@ -24,10 +24,10 @@ function App() {
                     setData({
                         ...data
                     });
-                    navigate("/sign-in");
+                    navigate("/sign-in", {replace: true});
                 }
 
-                if (res && res.message) {
+                if (res.message) {
                     console.log(res.message);
                 }
             })
@@ -48,6 +48,24 @@ function App() {
             .catch((err) => {
                 console.log(err);
             })
+    }
+
+    React.useEffect(() => {
+        tokenCheck();
+    },[])
+
+    function tokenCheck() {
+        const jwt = localStorage.getItem('jwt');
+        if (jwt) {
+            mainApi.validityCheck(jwt)
+                .then((res) => {
+                    if (res) {
+                        setAuthorized(true);
+                        navigate("/movies", {replace: true})
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
     }
 
     return (
