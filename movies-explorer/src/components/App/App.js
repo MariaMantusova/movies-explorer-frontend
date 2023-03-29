@@ -42,7 +42,7 @@ function App() {
                 if (res.token) {
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
-                    navigate("/movies");
+                    navigate("/movies", {replace: true});
                 }
             })
             .catch((err) => {
