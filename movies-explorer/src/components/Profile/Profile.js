@@ -43,11 +43,14 @@ function Profile(props) {
                 <form className="profile__form" onSubmit={handleSubmit}>
                     <div className="profile__input-container profile__input-container_type_top">
                         <label className="profile__label">Имя</label>
-                        <input className="profile__input" type="text" onChange={handleChangeName} value={name || ""}/>
+                        <input className="profile__input" name="name" pattern="^[a-zа-яёA-ZА-ЯЁ\-\s/i]+" type="text"
+                               onChange={handleChangeName} value={name || ""}/>
                     </div>
                     <div className="profile__input-container profile__input-container_type_bottom">
                         <label className="profile__label">E-mail</label>
-                        <input className="profile__input" type="email" onChange={handleChangeEmail} value={email || ""}/>
+                        <input className="profile__input" type="email" name="email"
+                               pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$"
+                               onChange={handleChangeEmail} value={email || ""}/>
                     </div>
                     <button className="profile__button">Редактировать</button>
                 </form>

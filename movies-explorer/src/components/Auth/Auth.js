@@ -14,7 +14,7 @@ function Auth(props) {
                 {props.children}
                 <label className="auth__label">E-mail</label>
                 <input className="auth__input" type="email" value={props.data.email || ""} name="email"
-                       pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" onChange={props.inputsChanges} required/>
+                       pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,6}$" onChange={props.inputsChanges} required/>
                 <p className="auth__input-error"></p>
                 <label className="auth__label">Пароль</label>
                 <input className="auth__input" name="password" type="password" onChange={props.inputsChanges} value={props.data.password || ""} required/>
