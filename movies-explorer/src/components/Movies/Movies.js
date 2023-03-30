@@ -15,7 +15,7 @@ function Movies() {
             <section className="movies">
                 <SearchForm/>
                 <MoviesCardList class="movie__save-button_active"/>
-                <Preloader/>
+                <button className="movies__adding-button">Ещё</button>
             </section>
             <Footer/>
         </>
