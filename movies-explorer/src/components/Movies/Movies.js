@@ -13,8 +13,7 @@ function Movies() {
             <HeaderBurger/>
             <section className="movies">
                 <SearchForm/>
-                <MoviesCardList class="movie__save-button_active"/>
-                <button className="movies__adding-button">Ещё</button>
+                <MoviesCardList/>
             </section>
             <Footer/>
         </>

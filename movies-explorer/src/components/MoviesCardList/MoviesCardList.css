@@ -5,6 +5,9 @@
     max-width: 1140px;
     margin: 0 auto;
     padding-bottom: 10px;
+    min-height: 65vh;
+    justify-content: center;
+    align-content: center;
 }
 
 @media screen and (max-width: 1150px) {
@@ -27,3 +30,32 @@
     display: flex;
     flex-direction: column;
 }
+
+.movies__adding-button {
+    max-width: 320px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: transparent;
+    border-radius: 8px;
+    border: 1px #E8E8E8 solid;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    align-self: center;
+}
+
+.movies__adding-button:hover {
+    background-color: #A0A0A0;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 695px) {
+    .movies__adding-button {
+        max-width: 240px;
+    }
+}
+
