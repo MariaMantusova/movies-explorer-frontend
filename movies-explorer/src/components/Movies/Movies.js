@@ -7,12 +7,15 @@ import HeaderToMobile from "../Header/HeaderToMobile";
 import HeaderBurger from "../Header/HeaderBurger";
 
 function Movies(props) {
+    const [isLoading, setIsLoading] = React.useState(false);
     const [moviesFiltered, setMoviesFiltered] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState("");
 
     function handleKeyWordChange(e) {
         setKeyWord(e.target.value);
+        setIsLoading(true);
         setMoviesFiltered(filterMovies)
+        setIsLoading(false);
     }
 
     function filterMovies() {
@@ -35,7 +38,7 @@ function Movies(props) {
             <HeaderBurger/>
             <section className="movies">
                 <SearchForm handleChange={handleKeyWordChange} value={keyWord}/>
-                <MoviesCardList movies={moviesFiltered}/>
+                <MoviesCardList movies={moviesFiltered} isLoading={isLoading}/>
             </section>
             <Footer/>
         </>

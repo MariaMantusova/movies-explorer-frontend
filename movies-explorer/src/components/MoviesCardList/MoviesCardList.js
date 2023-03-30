@@ -1,13 +1,13 @@
 import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import Preloader from "../Preloader/Preloader";
 
 function MoviesCardList(props) {
-    const [isLoading, setIsLoading] = React.useState(false);
-
     return (
         <section className="movies">
-            {props.movies.length <= 0 && <h2 className="movies__text">Не найдено фильмов для отображения</h2>}
+            {props.movies.length <= 0 && !props.isLoading && <h2 className="movies__text">Не найдено фильмов для отображения</h2>}
+            {props.isLoading && <Preloader/>}
             <ul className="movies__items">
                 {props.movies.map((movie, index) => (
                     <li className="movies__item" key={index} >
