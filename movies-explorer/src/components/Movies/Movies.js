@@ -6,14 +6,35 @@ import Footer from "../Footer/Footer";
 import HeaderToMobile from "../Header/HeaderToMobile";
 import HeaderBurger from "../Header/HeaderBurger";
 
-function Movies() {
+function Movies(props) {
+    const [moviesFiltered, setMoviesFiltered] = React.useState([]);
+    const [keyWord, setKeyWord] = React.useState("");
+
+    function handleKeyWordChange(e) {
+        setKeyWord(e.target.value);
+        setMoviesFiltered(filterMovies)
+    }
+
+    function filterMovies() {
+        let filteredMovies = []
+
+        props.getMovies.filter((movie) => {
+            if (movie.nameRU.includes(keyWord) || movie.nameEN.includes(keyWord) || movie.director.includes(keyWord) ||
+                movie.description.includes(keyWord)) {
+                filteredMovies.push(movie)
+            }
+        })
+
+        return filteredMovies;
+    }
+
     return (
         <>
             <HeaderToMobile/>
             <HeaderBurger/>
             <section className="movies">
-                <SearchForm/>
-                <MoviesCardList/>
+                <SearchForm handleChange={handleKeyWordChange} value={keyWord}/>
+                <MoviesCardList movies={moviesFiltered}/>
             </section>
             <Footer/>
         </>

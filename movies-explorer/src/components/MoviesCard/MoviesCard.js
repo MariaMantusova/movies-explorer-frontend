@@ -3,13 +3,13 @@ import "./MoviesCard.css";
 
 function MoviesCard(props) {
     return (
-        <section className="movie">
+        <section className="movie" key={props.movie._id}>
             <div className="movie__container">
-                <h2 className="movie__name">Hello Kitty</h2>
-                <p className="movie__duration">1ч 35м</p>
+                <h2 className="movie__name">{props.movie.nameRU}</h2>
+                <p className="movie__duration">{props.movie.duration} мин</p>
                 <button className={`movie__save-button ${props.class}`}></button>
             </div>
-            <img className="movie__image" src="https://4lapy.ru/resize/800x463/upload/medialibrary/84c/84c48b8e8e4b57579667392f8936e5ba.jpg" alt="фото фильма"/>
+            <img className="movie__image" src={`https://api.nomoreparties.co/${props.movie.image.url}`} alt="фото фильма"/>
         </section>
     )
 }

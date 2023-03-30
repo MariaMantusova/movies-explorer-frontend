@@ -10,11 +10,13 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Register from "../Register/Register";
 import {mainApi} from "../../utils/MainApi";
 import Login from "../Login/Login";
+import {moviesApi} from "../../utils/MoviesApi";
 
 function App() {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = React.useState({});
     const [authorized, setAuthorized] = React.useState(false);
+    const [movies, setMovies] = React.useState([]);
 
     React.useEffect(() => {
         authorized && mainApi.getUserInfo()
@@ -25,6 +27,14 @@ function App() {
                 console.log(err);
             })
     }, [authorized]);
+
+    React.useEffect(() => {
+        moviesApi.getMovies()
+            .then((moviesList) => {
+                setMovies(moviesList)
+            })
+            .catch((err) => console.log(err))
+    }, []);
 
     function handleUpdateUser(name, email) {
         mainApi.changeUserInfo(name, email)
@@ -94,7 +104,7 @@ function App() {
                 </Route>
                 <Route path="/movies" element={
                     <ProtectedRoute authorized={authorized}>
-                        <Movies/>
+                        <Movies getMovies={movies}/>
                     </ProtectedRoute>}
                 />
                 <Route path="/saved-movies" element={

@@ -3,17 +3,19 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
-    const [movies, setMovies] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     return (
         <section className="movies">
-            {movies.length <= 0 && <h2 className="movies__text">Не найдено фильмов для отображения</h2>}
+            {props.movies.length <= 0 && <h2 className="movies__text">Не найдено фильмов для отображения</h2>}
             <ul className="movies__items">
-                <li className="movies__item">
-                    <MoviesCard class={`${props.class}`}/>
-                </li>
+                {props.movies.map((movie, index) => (
+                    <li className="movies__item" key={index} >
+                        <MoviesCard movie={movie} key={index} />
+                    </li>
+            ))}
             </ul>
-            {movies.length > 7 && <button className="movies__adding-button">Ещё</button>}
+            {props.movies.length > 7 && <button className="movies__adding-button">Ещё</button>}
         </section>
     )
 
