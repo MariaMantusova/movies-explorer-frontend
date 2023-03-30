@@ -19,8 +19,9 @@ function Movies(props) {
         let filteredMovies = []
 
         props.getMovies.filter((movie) => {
-            if (movie.nameRU.includes(keyWord) || movie.nameEN.includes(keyWord) || movie.director.includes(keyWord) ||
-                movie.description.includes(keyWord)) {
+            if (movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()) || movie.nameEN.toLowerCase().includes(keyWord.toLowerCase())
+                || movie.director.toLowerCase().includes(keyWord.toLowerCase())
+                || movie.description.toLowerCase().includes(keyWord.toLowerCase())) {
                 filteredMovies.push(movie)
             }
         })
