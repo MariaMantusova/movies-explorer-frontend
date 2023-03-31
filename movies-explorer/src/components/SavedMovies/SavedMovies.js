@@ -13,7 +13,7 @@ function SavedMovies() {
             <HeaderBurger/>
             <section className="saved-movies">
                 <SearchForm/>
-                <MoviesCardList class="movie__save-button_delete"/>
+                <MoviesCardList class="movie__save-button_delete" />
             </section>
             <Footer/>
         </>

@@ -99,6 +99,57 @@ class MainApi {
             .catch((err) => Promise.reject(err));
     }
 
+    saveMovie(country, director, duration, year, description, image, trailerLink,
+                nameRU, nameEN, thumbnail, movieId) {
+        return fetch(`${this._url}/movies`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this._getAuthHeader()
+            },
+            body: JSON.stringify({
+                country: country,
+                director: director,
+                duration: duration,
+                year: year,
+                description: description,
+                image: image,
+                trailerLink: trailerLink,
+                nameRU: nameRU,
+                nameEN: nameEN,
+                thumbnail: thumbnail,
+                movieId: movieId
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err));
+    };
+
+    deleteMovie(id) {
+        return fetch(`${this._url}/movies/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this._getAuthHeader()
+            },
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => Promise.reject(err));
+
+    }
+
     _getAuthHeader() {
         if (this._token !== '') {
             return `Bearer ${this._token}`

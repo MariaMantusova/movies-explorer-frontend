@@ -29,12 +29,12 @@ function App() {
     }, [authorized]);
 
     React.useEffect(() => {
-        moviesApi.getMovies()
+        authorized && moviesApi.getMovies()
             .then((moviesList) => {
                 setMovies(moviesList)
             })
             .catch((err) => console.log(err))
-    }, []);
+    }, [authorized]);
 
     function handleUpdateUser(name, email) {
         mainApi.changeUserInfo(name, email)
@@ -69,7 +69,7 @@ function App() {
                 if (res.token) {
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
-                    navigate("/movies", {replace: true});
+                    navigate("/movies");
                 }
             })
             .catch((err) => {
