@@ -17,6 +17,10 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState({});
     const [authorized, setAuthorized] = React.useState(false);
     const [movies, setMovies] = React.useState([]);
+    const [savedMovies, setSavedMovies] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [moviesFiltered, setMoviesFiltered] = React.useState([]);
+    const [keyWord, setKeyWord] = React.useState("");
 
     React.useEffect(() => {
         authorized && mainApi.getUserInfo()
@@ -36,12 +40,62 @@ function App() {
             .catch((err) => console.log(err))
     }, [authorized]);
 
+    function handleKeyWordChange(e) {
+        setKeyWord(e.target.value);
+    }
+
+    function handleSubmitFilterMovies() {
+        setIsLoading(true);
+        setMoviesFiltered(filterMovies)
+        setIsLoading(false);
+    }
+
+    function filterMovies() {
+        let filteredMovies = []
+
+        if (localStorage.getItem(keyWord) !== null) {
+            JSON.parse(localStorage.getItem(keyWord)).map((movie) => {
+                filteredMovies.push(movie)
+            })
+
+            return filteredMovies
+        }
+
+        movies.filter((movie) => {
+            if (movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()) || movie.nameEN.toLowerCase().includes(keyWord.toLowerCase())
+                || movie.director.toLowerCase().includes(keyWord.toLowerCase())
+                || movie.description.toLowerCase().includes(keyWord.toLowerCase())) {
+                filteredMovies.push(movie)
+            }
+        })
+
+        localStorage.setItem(keyWord, JSON.stringify(filteredMovies));
+        return filteredMovies;
+    }
+
     function handleUpdateUser(name, email) {
         mainApi.changeUserInfo(name, email)
             .then((userInfo) => {
                 setCurrentUser(userInfo);
             })
             .catch((err) => console.log(err))
+    }
+
+    function handleMovieSave(movie) {
+        if (movie.owner === currentUser._id) {
+            mainApi.deleteMovie(movie._id)
+                .then((newMovie) => {
+                    setMovies((state) => state.map((m) => m._id === movie._id ? newMovie : m));
+                })
+                .catch((err) => console.log(err));
+        } else {
+            mainApi.saveMovie(movie.country, movie.director, movie.duration, movie.year, movie.description, movie.image, movie.trailerLink,
+                movie.nameRU, movie.nameEN, movie.thumbnail, movie.movieId)
+                .then((newMovie) => {
+                    setMovies((state) => state.map((m) => m._id === movie._id ? newMovie : m));
+                })
+                .catch((err) => console.log(err));
+        }
     }
 
     function handleRegister(password, email, name, setData, data) {
@@ -104,7 +158,9 @@ function App() {
                 </Route>
                 <Route path="/movies" element={
                     <ProtectedRoute authorized={authorized}>
-                        <Movies getMovies={movies}/>
+                        <Movies getMovies={movies} onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange}
+                                keyWord={keyWord} moviesFiltered={moviesFiltered} isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
+                        />
                     </ProtectedRoute>}
                 />
                 <Route path="/saved-movies" element={

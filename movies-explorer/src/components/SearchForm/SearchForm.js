@@ -6,6 +6,7 @@ function SearchForm(props) {
     function handleSubmit(evt) {
         evt.preventDefault();
 
+        props.onSubmit();
         localStorage.setItem("keyWord", props.value);
     }
 
@@ -13,7 +14,7 @@ function SearchForm(props) {
         <section className="search">
             <form className="search__container" onSubmit={handleSubmit}>
                 <button className="search__button-magnifier"></button>
-                <input className="search__header" onChange={props.handleChange} value={props.value || ""} placeholder="Фильм" />
+                <input className="search__header" onChange={props.handleChange} pattern="^[a-zа-яёA-ZА-ЯЁ1-9/gi]+" value={props.value || ""} placeholder="Фильм" />
                 <button className="search__button">Найти</button>
             </form>
             <FilterCheckbox/>
