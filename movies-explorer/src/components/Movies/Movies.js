@@ -21,6 +21,14 @@ function Movies(props) {
     function filterMovies() {
         let filteredMovies = []
 
+        if (localStorage.getItem(keyWord) !== null) {
+            JSON.parse(localStorage.getItem(keyWord)).map((movie) => {
+                filteredMovies.push(movie)
+            })
+
+            return filteredMovies
+        }
+
         props.getMovies.filter((movie) => {
             if (movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()) || movie.nameEN.toLowerCase().includes(keyWord.toLowerCase())
                 || movie.director.toLowerCase().includes(keyWord.toLowerCase())
@@ -29,6 +37,7 @@ function Movies(props) {
             }
         })
 
+        localStorage.setItem(keyWord, JSON.stringify(filteredMovies));
         return filteredMovies;
     }
 
