@@ -40,6 +40,14 @@ function App() {
             .catch((err) => console.log(err))
     }, [authorized]);
 
+    React.useEffect(() => {
+        authorized && mainApi.getSavedMovies()
+            .then((moviesList) => {
+                setSavedMovies(moviesList);
+            })
+            .catch((err) => console.log(err))
+    }, [authorized]);
+
     function handleKeyWordChange(e) {
         setKeyWord(e.target.value);
     }
@@ -69,8 +77,32 @@ function App() {
             }
         })
 
+        filteredMovies = showedFilms(filteredMovies)
         localStorage.setItem(keyWord, JSON.stringify(filteredMovies));
+
         return filteredMovies;
+    }
+
+    function showedFilms(filteredMovies) {
+        let showedFilms = []
+        filteredMovies.map((movie) => {
+            let isFilmFound = false
+            for (let i = 0; i < savedMovies.length; i++) {
+                if (movie.id === savedMovies[i].movieId) {
+                    movie.savedId = savedMovies[i]._id
+                    showedFilms.push(movie);
+                    isFilmFound = true
+                    break;
+                }
+            }
+            if (!isFilmFound) {
+                movie.savedId = ""
+                showedFilms.push(movie);
+            }
+        })
+
+
+        return showedFilms;
     }
 
     function handleUpdateUser(name, email) {
@@ -82,17 +114,29 @@ function App() {
     }
 
     function handleMovieSave(movie) {
-        if (movie.owner === currentUser._id) {
-            mainApi.deleteMovie(movie._id)
-                .then((newMovie) => {
-                    setMovies((state) => state.map((m) => m._id === movie._id ? newMovie : m));
+        if (movie.savedId !== "") {
+            mainApi.deleteMovie(movie.savedId)
+                .then((deletedMovie) => {
+                    setSavedMovies((state) => state.filter((m) => m.id !== deletedMovie.movieId));
+                    setMoviesFiltered((state) => state.map((m) => {
+                        if (m.id === deletedMovie.movieId) {
+                            m.savedId = ""
+                        }
+                        return m
+                    }))
                 })
                 .catch((err) => console.log(err));
         } else {
             mainApi.saveMovie(movie.country, movie.director, movie.duration, movie.year, movie.description, movie.image, movie.trailerLink,
-                movie.nameRU, movie.nameEN, movie.thumbnail, movie.movieId)
+                movie.nameRU, movie.nameEN, movie.image.formats.thumbnail, movie.id)
                 .then((newMovie) => {
-                    setMovies((state) => state.map((m) => m._id === movie._id ? newMovie : m));
+                    setMoviesFiltered((state) => state.map((m) => {
+                        if (m.id === newMovie.movieId) {
+                            m.savedId = newMovie._id
+                        }
+                        return m
+                    }))
+                    setSavedMovies([newMovie, ...savedMovies])
                 })
                 .catch((err) => console.log(err));
         }
@@ -158,14 +202,15 @@ function App() {
                 </Route>
                 <Route path="/movies" element={
                     <ProtectedRoute authorized={authorized}>
-                        <Movies getMovies={movies} onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange}
+                        <Movies onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange} savedMovies={savedMovies}
                                 keyWord={keyWord} moviesFiltered={moviesFiltered} isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
                         />
                     </ProtectedRoute>}
                 />
                 <Route path="/saved-movies" element={
                     <ProtectedRoute authorized={authorized}>
-                        <SavedMovies/>
+                        <SavedMovies handleKeyChange={handleKeyWordChange}
+                                     keyWord={keyWord} savedMovies={savedMovies} isLoading={isLoading}/>
                     </ProtectedRoute>}
                 />
                 <Route path="/profile" element={

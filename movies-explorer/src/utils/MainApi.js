@@ -99,6 +99,23 @@ class MainApi {
             .catch((err) => Promise.reject(err));
     }
 
+    getSavedMovies() {
+        return fetch(`${this._url}/movies`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this._getAuthHeader()
+            },
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => Promise.reject(err));
+    }
+
     saveMovie(country, director, duration, year, description, image, trailerLink,
                 nameRU, nameEN, thumbnail, movieId) {
         return fetch(`${this._url}/movies`, {

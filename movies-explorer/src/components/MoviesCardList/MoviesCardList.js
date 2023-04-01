@@ -11,7 +11,8 @@ function MoviesCardList(props) {
             <ul className="movies__items">
                 {props.movies.map((movie, index) => (
                     <li className="movies__item" key={index} >
-                        <MoviesCard movie={movie} key={index} class={props.class} />
+                        <MoviesCard movies={props.movies} movie={movie} key={index}
+                                    saveClick={props.saveMovie}/>
                     </li>
             ))}
             </ul>
