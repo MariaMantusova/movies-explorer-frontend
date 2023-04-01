@@ -48,6 +48,10 @@
     align-self: center;
 }
 
+.movies__adding-button_disappear {
+    display: none;
+}
+
 .movies__adding-button:hover {
     background-color: #A0A0A0;
     color: #FFFFFF;

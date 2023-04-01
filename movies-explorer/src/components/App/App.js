@@ -55,12 +55,15 @@ function App() {
     function handleSubmitFilterMovies() {
         setIsLoading(true);
         setMoviesFiltered(filterMovies)
-        localStorage.setItem(keyWord, JSON.stringify(movies));
         setIsLoading(false);
     }
 
     function filterMovies() {
         let filteredMovies = []
+
+        if (keyWord === "") {
+            return []
+        }
 
         if (localStorage.getItem(keyWord) !== null) {
             JSON.parse(localStorage.getItem(keyWord)).map((movie) => {
@@ -71,13 +74,15 @@ function App() {
             return filteredMovies
         }
 
-        movies.filter((movie) => {
+        movies.forEach((movie) => {
             if (movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()) || movie.nameEN.toLowerCase().includes(keyWord.toLowerCase())
                 || movie.director.toLowerCase().includes(keyWord.toLowerCase())
                 || movie.description.toLowerCase().includes(keyWord.toLowerCase())) {
                 filteredMovies.push(movie)
             }
         })
+        localStorage.setItem(keyWord, JSON.stringify(filteredMovies));
+
         filteredMovies = showedFilms(filteredMovies)
 
         return filteredMovies;
@@ -85,7 +90,6 @@ function App() {
 
     function showedFilms(filteredMovies) {
         let showedFilms = []
-        console.log(savedMovies)
         filteredMovies.map((movie) => {
             let isFilmFound = false
             for (let i = 0; i < savedMovies.length; i++) {
@@ -168,7 +172,7 @@ function App() {
                 if (res.token) {
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
-                    navigate("/movies");
+                    navigate("/movies", {replace: true});
                 }
             })
             .catch((err) => {
