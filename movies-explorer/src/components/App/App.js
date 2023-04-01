@@ -55,6 +55,7 @@ function App() {
     function handleSubmitFilterMovies() {
         setIsLoading(true);
         setMoviesFiltered(filterMovies)
+        localStorage.setItem(keyWord, JSON.stringify(movies));
         setIsLoading(false);
     }
 
@@ -66,6 +67,7 @@ function App() {
                 filteredMovies.push(movie)
             })
 
+            filteredMovies = showedFilms(filteredMovies)
             return filteredMovies
         }
 
@@ -76,15 +78,14 @@ function App() {
                 filteredMovies.push(movie)
             }
         })
-
         filteredMovies = showedFilms(filteredMovies)
-        localStorage.setItem(keyWord, JSON.stringify(filteredMovies));
 
         return filteredMovies;
     }
 
     function showedFilms(filteredMovies) {
         let showedFilms = []
+        console.log(savedMovies)
         filteredMovies.map((movie) => {
             let isFilmFound = false
             for (let i = 0; i < savedMovies.length; i++) {
@@ -117,7 +118,7 @@ function App() {
         if (movie.savedId !== "") {
             mainApi.deleteMovie(movie.savedId)
                 .then((deletedMovie) => {
-                    setSavedMovies((state) => state.filter((m) => m.id !== deletedMovie.movieId));
+                    setSavedMovies((state) => state.filter((m) => m.movieId !== deletedMovie.movieId));
                     setMoviesFiltered((state) => state.map((m) => {
                         if (m.id === deletedMovie.movieId) {
                             m.savedId = ""
