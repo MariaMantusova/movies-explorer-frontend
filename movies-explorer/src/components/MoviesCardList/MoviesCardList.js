@@ -6,15 +6,20 @@ import Preloader from "../Preloader/Preloader";
 function MoviesCardList(props) {
     const [currentPage, setCurrentPage] = React.useState(1);
     const [moviesPerPage, setMoviesPerPage] = React.useState(7);
-
-    React.useEffect(() => {
-        if (document.documentElement.clientWidth < 450) {
+    const setWindowDimensions = () => {
+        if (document.documentElement.clientWidth > 450) {
+            setMoviesPerPage(7)
+        } else if (document.documentElement.clientWidth < 450) {
             setMoviesPerPage(5)
         }
+    }
+
+    React.useEffect(() => {
+        window.addEventListener('resize', setWindowDimensions);
     }, [])
 
     const lastMovieIndex = currentPage * moviesPerPage;
-    const currentMovie = props.movies.slice(1, lastMovieIndex);
+    const currentMovie = props.movies.slice(0, lastMovieIndex);
 
     function paginate() {
         setCurrentPage(prevState => prevState + 1);
