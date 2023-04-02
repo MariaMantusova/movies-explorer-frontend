@@ -15,7 +15,6 @@ function Login(props) {
     function handleSubmitLogin(evt) {
         evt.preventDefault();
 
-        console.log(dataLogin)
         if (!dataLogin.password || !dataLogin.email) {
             return
         }
@@ -43,19 +42,19 @@ function Login(props) {
                        pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-zA-Z]{2,6}$"
                        required/>
                 {(email.isDirty && email.isEmpty) && <p className="auth__input-error">Поле не может быть пустым</p>}
-                {(email.isDirty && email.emailError) && <p className="auth__input-error">Введен некорректный email</p>}
+                {(email.isDirty && email.emailError && !email.isEmpty) && <p className="auth__input-error">Введен некорректный email</p>}
                 <label className="auth__label">Пароль</label>
                 <input className="auth__input" name="password" type="password" onChange={password.onChange}
                        onBlur={password.onBlur} value={password.value} required/>
                 {(password.isDirty && password.isEmpty) &&
                 <p className="auth__input-error">Поле не может быть пустым</p>}
-                {(password.isDirty && password.minLengthError) &&
+                {(password.isDirty && password.minLengthError && !password.isEmpty) &&
                 <p className="auth__input-error">Пароль не может быть меньше 6 символов</p>}
                 <button disabled={!password.inputValid || !email.inputValid} className="auth__button auth__button_type_login">Войти</button>
             </form>
             <div className="auth__register">
                 <p className="auth__text">Ещё не зарегистрированы?</p>
-                <Link to="/sign-up" className="auth__link">Войти</Link>
+                <Link to="/sign-up" className="auth__link">Зарегитрироваться</Link>
             </div>
         </section>
     )
