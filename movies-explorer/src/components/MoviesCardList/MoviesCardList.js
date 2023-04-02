@@ -15,11 +15,16 @@ function MoviesCardList(props) {
     }
 
     React.useEffect(() => {
+        setCurrentPage(1);
+    }, [props.keyWord])
+
+    React.useEffect(() => {
         window.addEventListener('resize', setWindowDimensions);
     }, [])
 
     const lastMovieIndex = currentPage * moviesPerPage;
     const currentMovie = props.movies.slice(0, lastMovieIndex);
+    const lastPage = Math.ceil(props.movies.length / 7)
 
     function paginate() {
         setCurrentPage(prevState => prevState + 1);
@@ -39,7 +44,7 @@ function MoviesCardList(props) {
                     </li>
             ))}
             </ul>
-            {(props.movies.length > 7 && lastMovieIndex !== props.movies.length) && <button className="movies__adding-button" onClick={paginate}>Ещё</button>}
+            {(props.movies.length > 7 && currentPage !== lastPage) && <button className="movies__adding-button" onClick={paginate}>Ещё</button>}
         </section>
     )
 
