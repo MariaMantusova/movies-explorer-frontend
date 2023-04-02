@@ -48,6 +48,7 @@ function Profile(props) {
             <HeaderBurger/>
             <section className="profile">
                 <h1 className="profile__header">Привет, {name}!</h1>
+                {props.isUpdateSuccess !== "" && <p className="profile__info-text">{name}, {props.isUpdateSuccess}</p>}
                 <form className="profile__form" onSubmit={handleSubmit}>
                     {(nameValid.isDirty && nameValid.isEmpty) && <p className="auth__input-error">Поле не может быть пустым</p>}
                     {(nameValid.isDirty && nameValid.nameError && !nameValid.isEmpty) && <p className="auth__input-error">Данное имя нельзя использовать</p>}

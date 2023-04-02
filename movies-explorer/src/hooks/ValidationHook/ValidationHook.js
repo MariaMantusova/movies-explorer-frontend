@@ -21,7 +21,7 @@ const useValidation = (value, validations) => {
                     regularExpEmail.test(String(value.toLowerCase())) ? setEmailError(false) : setEmailError(true)
                     break;
                 case 'isName':
-                    const regularExpName = /^[a-zа-яёA-ZА-ЯЁ\-\s/i]+/
+                    const regularExpName = /^[a-zа-яёA-ZА-ЯЁ\-\s/i]+$/
                     regularExpName.test(String(value.toLowerCase())) ? setNameError(false) : setNameError(true)
                     break;
             }

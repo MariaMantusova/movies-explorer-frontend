@@ -125,6 +125,13 @@
     }
 }
 
+.profile__info-text {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 15px;
+    color: darkcyan;
+}
+
 .profile__link {
     font-size: 13px;
     line-height: 16px;

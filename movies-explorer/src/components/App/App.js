@@ -11,7 +11,6 @@ import Register from "../Register/Register";
 import {mainApi} from "../../utils/MainApi";
 import Login from "../Login/Login";
 import {moviesApi} from "../../utils/MoviesApi";
-import {replaceBehavior} from "@testing-library/user-event/dist/keyboard/plugins";
 
 function App() {
     const navigate = useNavigate();
@@ -22,6 +21,7 @@ function App() {
     const [isLoading, setIsLoading] = React.useState(false);
     const [moviesFiltered, setMoviesFiltered] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState("");
+    const [updateSuccess, setUpdateSuccess] = React.useState("");
 
     React.useEffect(() => {
         authorized && mainApi.getUserInfo()
@@ -114,9 +114,16 @@ function App() {
     function handleUpdateUser(name, email) {
         mainApi.changeUserInfo(name, email)
             .then((userInfo) => {
+                setUpdateSuccess("ваши данные успешно обновлены!");
                 setCurrentUser(userInfo);
+                setTimeout(() => {
+                    setUpdateSuccess("");
+                }, 3000)
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err)
+                setUpdateSuccess("Произошла ошибка при изменении данных");
+            })
     }
 
     function handleMovieSave(movie) {
@@ -225,7 +232,7 @@ function App() {
                 />
                 <Route path="/profile" element={
                     <ProtectedRoute authorized={authorized}>
-                        <Profile onChangingInfo={handleUpdateUser} onLogOut={handleLogOut}/>
+                        <Profile onChangingInfo={handleUpdateUser} onLogOut={handleLogOut} isUpdateSuccess={updateSuccess}/>
                     </ProtectedRoute>}
                 />
                 <Route exact path="/" element={<Main isAuthorized={authorized}/>}/>
