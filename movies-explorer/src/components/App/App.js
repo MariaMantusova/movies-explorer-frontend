@@ -126,19 +126,23 @@ function App() {
             })
     }
 
+    function handleDeleteMovie(movieId) {
+        mainApi.deleteMovie(movieId)
+            .then((deletedMovie) => {
+                setSavedMovies((state) => state.filter((m) => m.movieId !== deletedMovie.movieId));
+                setMoviesFiltered((state) => state.map((m) => {
+                    if (m.id === deletedMovie.movieId) {
+                        m.savedId = ""
+                    }
+                    return m
+                }))
+            })
+            .catch((err) => console.log(err));
+    }
+
     function handleMovieSave(movie) {
         if (movie.savedId !== "") {
-            mainApi.deleteMovie(movie.savedId)
-                .then((deletedMovie) => {
-                    setSavedMovies((state) => state.filter((m) => m.movieId !== deletedMovie.movieId));
-                    setMoviesFiltered((state) => state.map((m) => {
-                        if (m.id === deletedMovie.movieId) {
-                            m.savedId = ""
-                        }
-                        return m
-                    }))
-                })
-                .catch((err) => console.log(err));
+            handleDeleteMovie(movie.savedId);
         } else {
             mainApi.saveMovie(movie.country, movie.director, movie.duration, movie.year, movie.description, movie.image, movie.trailerLink,
                 movie.nameRU, movie.nameEN, movie.image.formats.thumbnail, movie.id)
@@ -226,7 +230,7 @@ function App() {
                 />
                 <Route path="/saved-movies" element={
                     <ProtectedRoute authorized={authorized}>
-                        <SavedMovies handleKeyChange={handleKeyWordChange}
+                        <SavedMovies handleKeyChange={handleKeyWordChange} onDeleteClick={handleDeleteMovie}
                                      keyWord={keyWord} savedMovies={savedMovies} isLoading={isLoading}/>
                     </ProtectedRoute>}
                 />

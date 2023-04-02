@@ -2,11 +2,18 @@ import React from "react";
 import "./MoviesCard.css";
 
 function MoviesCard(props) {
-    const classActive = `movie__save-button ${props.movie.savedId !== "" && "movie__save-button_active"}`
     const image = `https://api.nomoreparties.co/${props.movie.image.url}`
 
-    function handleSaveMovie() {
+    function handleSaveMovie(evt) {
+        evt.preventDefault()
+
         props.saveClick(props.movie);
+    }
+
+    function handleDeleteMovie(evt) {
+        evt.preventDefault()
+
+        props.deleteClick(props.movie._id);
     }
 
     return (
@@ -14,7 +21,7 @@ function MoviesCard(props) {
             <div className="movie__container">
                 <h2 className="movie__name">{props.movie.nameRU}</h2>
                 <p className="movie__duration">{props.movie.duration} мин</p>
-                <button className={classActive} onClick={handleSaveMovie}></button>
+                <button className={`movie__save-button ${props.movie.savedId !== "" && props.class}`} onClick={props.movie._id ? handleDeleteMovie : handleSaveMovie}></button>
             </div>
             <img className="movie__image" src={image} alt={props.movie.nameRU}/>
         </section>

@@ -13,7 +13,7 @@ function SavedMovies(props) {
             <HeaderBurger/>
             <section className="saved-movies">
                 <SearchForm handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={props}/>
-                <MoviesCardList class="movie__save-button_delete" movies={props.savedMovies} isLoading={props.isLoading}/>
+                <MoviesCardList class="movie__save-button_delete" onDelete={props.onDeleteClick} movies={props.savedMovies} isLoading={props.isLoading}/>
             </section>
             <Footer/>
         </>
