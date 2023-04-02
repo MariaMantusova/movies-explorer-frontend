@@ -11,6 +11,7 @@ import Register from "../Register/Register";
 import {mainApi} from "../../utils/MainApi";
 import Login from "../Login/Login";
 import {moviesApi} from "../../utils/MoviesApi";
+import {replaceBehavior} from "@testing-library/user-event/dist/keyboard/plugins";
 
 function App() {
     const navigate = useNavigate();
@@ -180,9 +181,15 @@ function App() {
             })
     }
 
+    function handleLogOut() {
+        setAuthorized(false);
+        localStorage.removeItem('jwt');
+        navigate("/", {replace: true});
+    }
+
     React.useEffect(() => {
         tokenCheck();
-    },[])
+    },[handleLogin, handleLogOut])
 
     function tokenCheck() {
         const jwt = localStorage.getItem('jwt');
@@ -191,7 +198,6 @@ function App() {
                 .then((res) => {
                     if (res) {
                         setAuthorized(true);
-                        navigate("/movies", {replace: true})
                     }
                 })
                 .catch((err) => console.log(err))
@@ -220,10 +226,10 @@ function App() {
                 />
                 <Route path="/profile" element={
                     <ProtectedRoute authorized={authorized}>
-                        <Profile onChangingInfo={handleUpdateUser}/>
+                        <Profile onChangingInfo={handleUpdateUser} onLogOut={handleLogOut}/>
                     </ProtectedRoute>}
                 />
-                <Route exact path="/" element={<Main/>}/>
+                <Route exact path="/" element={<Main isAuthorized={authorized}/>}/>
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>
         </CurrentUserContext.Provider>

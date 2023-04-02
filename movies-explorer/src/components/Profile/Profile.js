@@ -42,10 +42,6 @@ function Profile(props) {
         props.onChangingInfo(name, email);
     }
 
-    function logOut() {
-        localStorage.removeItem('jwt');
-    }
-
     return (
         <>
             <HeaderToMobile/>
@@ -70,7 +66,7 @@ function Profile(props) {
                     </div>
                     <button className={`profile__button ${(!nameValid.inputValid || !emailValid.inputValid || disableButton) && "profile__button_type_disabled"}`} disabled={!nameValid.inputValid || !emailValid.inputValid || disableButton}>Редактировать</button>
                 </form>
-                <Link to="/" className="profile__link" onClick={logOut}>Выйти из аккаунта</Link>
+                <Link to="/" className="profile__link" onClick={props.onLogOut}>Выйти из аккаунта</Link>
             </section>
         </>
     )

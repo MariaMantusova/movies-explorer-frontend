@@ -7,8 +7,10 @@ import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
+import HeaderToMobile from "../Header/HeaderToMobile";
+import HeaderBurger from "../Header/HeaderBurger";
 
-function Main() {
+function Main(props) {
     const onClickAboutProject = () => {
         window.location.href = "#about-project";
     };
@@ -23,12 +25,21 @@ function Main() {
 
     return (
         <>
-            <Header>
-                <div className="header__links">
-                    <Link to="/sign-up" className="header__link header__link_type_registration">Регистрация</Link>
-                    <Link to="/sign-in" className="header__link header__link_type_login">Войти</Link>
-                </div>
-            </Header>
+            <>
+                {props.isAuthorized ?
+                    <>
+                        <HeaderToMobile/>
+                        <HeaderBurger/>
+                    </>
+                    :
+                    <Header>
+                        <div className="header__links">
+                            <Link to="/sign-up"
+                                  className="header__link header__link_type_registration">Регистрация</Link>
+                            <Link to="/sign-in" className="header__link header__link_type_login">Войти</Link>
+                        </div>
+                    </Header>}
+            </>
             <main>
                 <Promo onClickAboutProject={onClickAboutProject} onClickTechs={onClickTechs}
                        onClickStudent={onClickStudent}/>
