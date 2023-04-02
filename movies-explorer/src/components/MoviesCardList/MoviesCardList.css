@@ -31,6 +31,11 @@
     flex-direction: column;
 }
 
+.movies__item-link {
+    text-decoration: none;
+    color: black;
+}
+
 .movies__adding-button {
     max-width: 320px;
     width: 100%;

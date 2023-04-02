@@ -31,9 +31,11 @@ function MoviesCardList(props) {
             {props.isLoading && <Preloader/>}
             <ul className="movies__items">
                 {currentMovie.map((movie, index) => (
-                    <li className="movies__item" key={index} >
+                    <li className="movies__item" key={index}>
+                        <a className="movies__item-link" href={movie.trailerLink} target="_blank">
                         <MoviesCard movies={props.movies} movie={movie} key={index}
                                     saveClick={props.saveMovie}/>
+                        </a>
                     </li>
             ))}
             </ul>
