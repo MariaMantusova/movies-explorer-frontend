@@ -151,13 +151,12 @@ function App() {
     function handleRegister(password, email, name, setData, data) {
         mainApi.registerUser(password, email, name)
             .then((res) => {
-                if (res.statusCode !== 400) {
+                if (res.statusCode !== 400 || res.statusCode !== 409) {
                     setData({
                         ...data
                     });
-                    navigate("/sign-in", {replace: true});
+                    handleLogin(setData, data);
                 }
-
                 if (res.message) {
                     console.log(res.message);
                 }
