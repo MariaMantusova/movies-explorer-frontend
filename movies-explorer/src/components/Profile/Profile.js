@@ -29,7 +29,6 @@ function Profile(props) {
     }, [emailValid.value])
 
     React.useEffect(() => {
-        console.log(name, currentUser.name, nameValid.value)
         if (nameValid.value === currentUser.name && emailValid.value === currentUser.email) {
             setDisableButton(true)
         } else {
