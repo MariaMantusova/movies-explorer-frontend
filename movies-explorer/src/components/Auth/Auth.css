@@ -114,6 +114,15 @@
     margin-top: 159px;
 }
 
+.auth__button_type_disabled {
+    background-color: #A0A0A0;
+}
+
+.auth__button_type_disabled:hover {
+    cursor: not-allowed;
+    opacity: 1;
+}
+
 .auth__register {
     display: flex;
     align-self: center;

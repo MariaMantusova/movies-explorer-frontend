@@ -54,7 +54,7 @@ function Register(props) {
                 <p className="auth__input-error">Поле не может быть пустым</p>}
                 {(password.isDirty && password.minLengthError && !password.isEmpty) &&
                 <p className="auth__input-error">Пароль не может быть меньше 6 символов</p>}
-                <button disabled={!password.inputValid || !email.inputValid} className="auth__button auth__button_type_login">Войти</button>
+                <button disabled={!password.inputValid || !email.inputValid} className={`auth__button auth__button_type_login ${(!password.inputValid || !email.inputValid) && "auth__button_type_disabled"}`}>Зарегистрироваться</button>
             </form>
             <div className="auth__register">
                 <p className="auth__text">Уже зарегистрированы?</p>
