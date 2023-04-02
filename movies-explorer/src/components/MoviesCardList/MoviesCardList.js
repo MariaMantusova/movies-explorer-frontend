@@ -39,7 +39,7 @@ function MoviesCardList(props) {
                     </li>
             ))}
             </ul>
-            {props.movies.length > 7 && <button className="movies__adding-button" onClick={paginate}>Ещё</button>}
+            {(props.movies.length > 7 && lastMovieIndex !== props.movies.length) && <button className="movies__adding-button" onClick={paginate}>Ещё</button>}
         </section>
     )
 
