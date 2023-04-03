@@ -17,6 +17,10 @@ function SavedMovies(props) {
         setSavedMoviesFiltered(savedMoviesFilter)
     }, [props.savedMovies])
 
+    React.useEffect(() => {
+        setSavedMoviesFiltered(savedMoviesFilter)
+    }, [props.setOnlyShorts])
+
     function handleSubmitFilterSavedMovies() {
         props.setIsLoading(true);
         setSavedMoviesFiltered(savedMoviesFilter)
@@ -46,7 +50,7 @@ function SavedMovies(props) {
             <HeaderToMobile/>
             <HeaderBurger/>
             <section className="saved-movies">
-                <SearchForm handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={handleSubmitFilterSavedMovies}/>
+                <SearchForm onClick={props.setOnlyShorts} handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={handleSubmitFilterSavedMovies}/>
                 <MoviesCardList class="movie__save-button_delete" onDelete={props.onDeleteClick} movies={savedMoviesFiltered} isLoading={props.isLoading}/>
             </section>
             <Footer/>
