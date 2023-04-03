@@ -202,7 +202,6 @@ function App() {
         mainApi.authorizeUser(data.password, data.email)
             .then((res) => {
                 if (res.token) {
-                    console.log(data, "login")
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
                     tokenCheck();
