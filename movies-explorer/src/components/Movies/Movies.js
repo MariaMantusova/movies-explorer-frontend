@@ -7,6 +7,12 @@ import HeaderToMobile from "../Header/HeaderToMobile";
 import HeaderBurger from "../Header/HeaderBurger";
 
 function Movies(props) {
+    React.useEffect(() => {
+        props.setKeyWord(localStorage.getItem("keyWord"));
+        localStorage.getItem("shortsState");
+        props.setMoviesFiltered(JSON.parse(localStorage.getItem(localStorage.getItem("keyWord"))))
+    }, []);
+
     return (
         <>
             <HeaderToMobile/>

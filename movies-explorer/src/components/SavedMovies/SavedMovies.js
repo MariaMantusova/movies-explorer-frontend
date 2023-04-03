@@ -11,6 +11,8 @@ function SavedMovies(props) {
 
     React.useEffect(() => {
         setSavedMoviesFiltered(props.savedMovies);
+        props.setKeyWord("");
+        localStorage.removeItem("shortsState")
     }, [])
 
     React.useEffect(() => {

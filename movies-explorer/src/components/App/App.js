@@ -258,15 +258,15 @@ function App() {
                 <Route path="/movies" element={
                     <ProtectedRoute authorized={authorized}>
                         <Movies onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange} savedMovies={savedMovies}
-                                setOnlyShorts={handleSetCheckbox}
-                                keyWord={keyWord} moviesFiltered={moviesFiltered} isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
+                                setOnlyShorts={handleSetCheckbox} setKeyWord={setKeyWord}
+                                keyWord={keyWord} moviesFiltered={moviesFiltered} setMoviesFiltered={setMoviesFiltered} isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
                         />
                     </ProtectedRoute>}
                 />
                 <Route path="/saved-movies" element={
                     <ProtectedRoute authorized={authorized}>
                         <SavedMovies handleKeyChange={handleKeyWordChange} onDeleteClick={handleDeleteMovie}
-                                     setOnlyShorts={handleSetCheckbox} setIsLoading={setIsLoading}
+                                     setOnlyShorts={handleSetCheckbox} setIsLoading={setIsLoading} setKeyWord={setKeyWord}
                                      keyWord={keyWord} savedMovies={savedMovies} isLoading={isLoading}/>
                     </ProtectedRoute>}
                 />
