@@ -66,23 +66,30 @@ function App() {
             return []
         }
 
-        if (localStorage.getItem(keyWord) !== null) {
-            JSON.parse(localStorage.getItem(keyWord)).map((movie) => {
+        let key = keyWord
+        if (localStorage.getItem("shortsState") !== null) {
+            key += "_shorts"
+        }
+        if (localStorage.getItem(key) !== null) {
+            JSON.parse(localStorage.getItem(key)).map((movie) => {
                 filteredMovies.push(movie)
             })
 
             filteredMovies = showedFilms(filteredMovies)
             return filteredMovies
         }
-
         movies.forEach((movie) => {
             if (movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()) || movie.nameEN.toLowerCase().includes(keyWord.toLowerCase())
                 || movie.director.toLowerCase().includes(keyWord.toLowerCase())
                 || movie.description.toLowerCase().includes(keyWord.toLowerCase())) {
                 filteredMovies.push(movie)
             }
+
+            if (localStorage.getItem("shortsState") !== null) {
+                filteredMovies = filteredMovies.filter((movie) => movie.duration <= 40)
+            }
         })
-        localStorage.setItem(keyWord, JSON.stringify(filteredMovies));
+        localStorage.setItem(key, JSON.stringify(filteredMovies));
 
         filteredMovies = showedFilms(filteredMovies)
 
@@ -183,8 +190,9 @@ function App() {
                 if (res.token) {
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
-                    navigate("/movies", {replace: true});
+                    tokenCheck();
                 }
+                navigate("/movies", {replace: true});
             })
             .catch((err) => {
                 console.log(err);
@@ -195,11 +203,12 @@ function App() {
         setAuthorized(false);
         localStorage.removeItem('jwt');
         navigate("/", {replace: true});
+        tokenCheck();
     }
 
     React.useEffect(() => {
         tokenCheck();
-    },[handleLogin, handleLogOut])
+    },[])
 
     function tokenCheck() {
         const jwt = localStorage.getItem('jwt');
@@ -214,6 +223,15 @@ function App() {
         }
     }
 
+    function handleSetCheckbox() {
+        if (localStorage.getItem("shortsState") !== null) {
+            localStorage.removeItem("shortsState");
+        } else {
+            localStorage.setItem("shortsState", "true")
+        }
+        handleSubmitFilterMovies();
+    }
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
@@ -224,6 +242,7 @@ function App() {
                 <Route path="/movies" element={
                     <ProtectedRoute authorized={authorized}>
                         <Movies onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange} savedMovies={savedMovies}
+                                setOnlyShorts={handleSetCheckbox}
                                 keyWord={keyWord} moviesFiltered={moviesFiltered} isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
                         />
                     </ProtectedRoute>}
@@ -231,6 +250,7 @@ function App() {
                 <Route path="/saved-movies" element={
                     <ProtectedRoute authorized={authorized}>
                         <SavedMovies handleKeyChange={handleKeyWordChange} onDeleteClick={handleDeleteMovie}
+                                     setOnlyShorts={handleSetCheckbox}
                                      keyWord={keyWord} savedMovies={savedMovies} isLoading={isLoading}/>
                     </ProtectedRoute>}
                 />
