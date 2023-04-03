@@ -23,3 +23,5 @@ ___
 [Ссылка на фронт](https://aboutfilms.nomoredomains.work/)
 
 [Ссылка на макет](https://disk.yandex.ru/d/33tshkilDqrm1w)
+
+[Ссылка на pull Req](https://disk.yandex.ru/d/33tshkilDqrm1w)
