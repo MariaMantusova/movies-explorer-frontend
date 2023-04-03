@@ -8,10 +8,37 @@ import HeaderBurger from "../Header/HeaderBurger";
 
 function Movies(props) {
     React.useEffect(() => {
-        props.setKeyWord(localStorage.getItem("keyWord"));
-        localStorage.getItem("shortsState");
-        props.setMoviesFiltered(JSON.parse(localStorage.getItem(localStorage.getItem("keyWord"))))
+        if (localStorage.getItem("keyWord") !== null) {
+            props.setKeyWord(localStorage.getItem("keyWord"));
+            localStorage.getItem("shortsState");
+            props.setMoviesFiltered(filterMoviesClass);
+        } else {
+            props.setMoviesFiltered(props.moviesFiltered)
+        }
     }, []);
+
+    function filterMoviesClass() {
+        let showedFilms = []
+
+        JSON.parse(localStorage.getItem(localStorage.getItem("keyWord"))).map((movie) => {
+            let isFilmFound = false;
+
+            for (let i = 0; i < props.savedMovies.length; i++) {
+                if (movie.id === props.savedMovies[i].movieId) {
+                    movie.savedId = props.savedMovies[i]._id
+                    showedFilms.push(movie);
+                    isFilmFound = true
+                    break;
+                }
+            }
+            if (!isFilmFound) {
+                movie.savedId = ""
+                showedFilms.push(movie);
+            }
+        })
+
+        return showedFilms;
+    }
 
     return (
         <>
