@@ -44,6 +44,11 @@ function App() {
     React.useEffect(() => {
         authorized && mainApi.getSavedMovies()
             .then((moviesList) => {
+                moviesList.filter((movie) => {
+                   if (movie.owner === currentUser._id) {
+                       return
+                   }
+                })
                 setSavedMovies(moviesList);
             })
             .catch((err) => console.log(err))
@@ -67,17 +72,25 @@ function App() {
         }
 
         let key = keyWord
+
         if (localStorage.getItem("shortsState") !== null) {
             key += "_shorts"
         }
+
         if (localStorage.getItem(key) !== null) {
             JSON.parse(localStorage.getItem(key)).map((movie) => {
                 filteredMovies.push(movie)
             })
 
             filteredMovies = showedFilms(filteredMovies)
+
+            if ((localStorage.getItem("shortsState") !== null) && localStorage.getItem(keyWord) !== null) {
+                filteredMovies = filteredMovies.filter((movie) => movie.duration <= 40)
+            }
+
             return filteredMovies
         }
+
         movies.forEach((movie) => {
             if (movie.nameRU.toLowerCase().includes(keyWord.toLowerCase()) || movie.nameEN.toLowerCase().includes(keyWord.toLowerCase())
                 || movie.director.toLowerCase().includes(keyWord.toLowerCase())
@@ -101,7 +114,7 @@ function App() {
         filteredMovies.map((movie) => {
             let isFilmFound = false
             for (let i = 0; i < savedMovies.length; i++) {
-                if (movie.id === savedMovies[i].movieId) {
+                if ((movie.id === savedMovies[i].movieId) && (savedMovies.owner === currentUser._id)) {
                     movie.savedId = savedMovies[i]._id
                     showedFilms.push(movie);
                     isFilmFound = true
@@ -173,6 +186,7 @@ function App() {
                     setData({
                         ...data
                     });
+                    console.log(data, "register")
                     handleLogin(setData, data);
                 }
                 if (res.message) {
@@ -188,6 +202,7 @@ function App() {
         mainApi.authorizeUser(data.password, data.email)
             .then((res) => {
                 if (res.token) {
+                    console.log(data, "login")
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
                     tokenCheck();
@@ -201,6 +216,7 @@ function App() {
 
     function handleLogOut() {
         setAuthorized(false);
+        setCurrentUser({});
         localStorage.removeItem('jwt');
         navigate("/", {replace: true});
         tokenCheck();
