@@ -114,7 +114,7 @@ function App() {
         filteredMovies.map((movie) => {
             let isFilmFound = false
             for (let i = 0; i < savedMovies.length; i++) {
-                if ((movie.id === savedMovies[i].movieId) && (savedMovies.owner === currentUser._id)) {
+                if (movie.id === savedMovies[i].movieId) {
                     movie.savedId = savedMovies[i]._id
                     showedFilms.push(movie);
                     isFilmFound = true
@@ -266,7 +266,7 @@ function App() {
                 <Route path="/saved-movies" element={
                     <ProtectedRoute authorized={authorized}>
                         <SavedMovies handleKeyChange={handleKeyWordChange} onDeleteClick={handleDeleteMovie}
-                                     setOnlyShorts={handleSetCheckbox}
+                                     setOnlyShorts={handleSetCheckbox} setIsLoading={setIsLoading}
                                      keyWord={keyWord} savedMovies={savedMovies} isLoading={isLoading}/>
                     </ProtectedRoute>}
                 />
