@@ -12,7 +12,7 @@ function SavedMovies(props) {
     React.useEffect(() => {
         setSavedMoviesFiltered(props.savedMovies);
         props.setKeyWord("");
-        localStorage.removeItem("shortsState")
+        localStorage.removeItem("shortsStateSavedMovies")
     }, [])
 
     React.useEffect(() => {
@@ -38,7 +38,7 @@ function SavedMovies(props) {
                 || movie.description.toLowerCase().includes(props.keyWord.toLowerCase())) {
                 savedFilteredMovies.push(movie);
 
-                if (localStorage.getItem("shortsState") !== null) {
+                if (localStorage.getItem("shortsStateSavedMovies") !== null) {
                     savedFilteredMovies = savedFilteredMovies.filter((movie) => movie.duration <= 40)
                 }
             }
@@ -52,7 +52,7 @@ function SavedMovies(props) {
             <HeaderToMobile/>
             <HeaderBurger/>
             <section className="saved-movies">
-                <SearchForm onClick={props.setOnlyShorts} handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={handleSubmitFilterSavedMovies}/>
+                <SearchForm onClick={props.setOnlyShorts} state="shortsStateSavedMovies" handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={handleSubmitFilterSavedMovies}/>
                 <MoviesCardList class="movie__save-button_delete" onDelete={props.onDeleteClick} movies={savedMoviesFiltered} isLoading={props.isLoading}/>
             </section>
             <Footer/>

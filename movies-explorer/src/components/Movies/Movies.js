@@ -10,7 +10,7 @@ function Movies(props) {
     React.useEffect(() => {
         if (localStorage.getItem("keyWord") !== null) {
             props.setKeyWord(localStorage.getItem("keyWord"));
-            localStorage.getItem("shortsState");
+            localStorage.getItem("shortsStateMovies");
             props.setMoviesFiltered(filterMoviesClass);
         } else {
             props.setMoviesFiltered(props.moviesFiltered)
@@ -18,9 +18,14 @@ function Movies(props) {
     }, []);
 
     function filterMoviesClass() {
-        let showedFilms = []
+        let key = localStorage.getItem("keyWord");
+        let showedFilms = [];
 
-        JSON.parse(localStorage.getItem(localStorage.getItem("keyWord"))).map((movie) => {
+        if (localStorage.getItem("shortsStateMovies") !== null) {
+            key += "_shorts"
+        }
+
+        JSON.parse(localStorage.getItem(key)).map((movie) => {
             let isFilmFound = false;
 
             for (let i = 0; i < props.savedMovies.length; i++) {
@@ -46,7 +51,7 @@ function Movies(props) {
             <HeaderBurger/>
             <section className="movies">
                 <SearchForm handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={props.onSubmit}
-                            onClick={props.setOnlyShorts}/>
+                            onClick={props.setOnlyShorts} state="shortsStateMovies"/>
                 <MoviesCardList class="movie__save-button_active" keyWord={props.keyWord} movies={props.moviesFiltered}
                                 isLoading={props.isLoading} savedMovies={props.savedMovies}
                                 saveMovie={props.onSaveClick}/>

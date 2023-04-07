@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2a87e2f7-9490-485a-ba36-79eb7aa83a31" name="movies-explorer" url="">
+        <fileTransfer rootFolder="/home/mariamantusova" accessType="SFTP" host="158.160.47.193" port="22" sshConfigId="4063b3b1-9c58-4331-a679-f5bf10b5d577" sshConfig="mariamantusova@158.160.47.193:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

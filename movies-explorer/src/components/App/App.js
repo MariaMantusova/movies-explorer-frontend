@@ -73,7 +73,7 @@ function App() {
 
         let key = keyWord
 
-        if (localStorage.getItem("shortsState") !== null) {
+        if (localStorage.getItem("shortsStateMovies") !== null) {
             key += "_shorts"
         }
 
@@ -84,7 +84,7 @@ function App() {
 
             filteredMovies = showedFilms(filteredMovies)
 
-            if ((localStorage.getItem("shortsState") !== null) && localStorage.getItem(keyWord) !== null) {
+            if ((localStorage.getItem("shortsStateMovies") !== null) && localStorage.getItem(keyWord) !== null) {
                 filteredMovies = filteredMovies.filter((movie) => movie.duration <= 40)
             }
 
@@ -98,10 +98,11 @@ function App() {
                 filteredMovies.push(movie)
             }
 
-            if (localStorage.getItem("shortsState") !== null) {
+            if (localStorage.getItem("shortsStateMovies") !== null) {
                 filteredMovies = filteredMovies.filter((movie) => movie.duration <= 40)
             }
         })
+
         localStorage.setItem(key, JSON.stringify(filteredMovies));
 
         filteredMovies = showedFilms(filteredMovies)
@@ -238,11 +239,20 @@ function App() {
         }
     }
 
-    function handleSetCheckbox() {
-        if (localStorage.getItem("shortsState") !== null) {
-            localStorage.removeItem("shortsState");
+    function handleSetCheckboxMovies() {
+        if (localStorage.getItem("shortsStateMovies") !== null) {
+            localStorage.removeItem("shortsStateMovies");
         } else {
-            localStorage.setItem("shortsState", "true")
+            localStorage.setItem("shortsStateMovies", "true")
+        }
+        handleSubmitFilterMovies();
+    }
+
+    function handleSetCheckboxSavedMovies() {
+        if (localStorage.getItem("shortsStateSavedMovies") !== null) {
+            localStorage.removeItem("shortsStateSavedMovies");
+        } else {
+            localStorage.setItem("shortsStateSavedMovies", "true")
         }
         handleSubmitFilterMovies();
     }
@@ -257,7 +267,7 @@ function App() {
                 <Route path="/movies" element={
                     <ProtectedRoute authorized={authorized}>
                         <Movies onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange} savedMovies={savedMovies}
-                                setOnlyShorts={handleSetCheckbox} setKeyWord={setKeyWord}
+                                setOnlyShorts={handleSetCheckboxMovies} setKeyWord={setKeyWord}
                                 keyWord={keyWord} moviesFiltered={moviesFiltered} setMoviesFiltered={setMoviesFiltered} isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
                         />
                     </ProtectedRoute>}
@@ -265,7 +275,7 @@ function App() {
                 <Route path="/saved-movies" element={
                     <ProtectedRoute authorized={authorized}>
                         <SavedMovies handleKeyChange={handleKeyWordChange} onDeleteClick={handleDeleteMovie}
-                                     setOnlyShorts={handleSetCheckbox} setIsLoading={setIsLoading} setKeyWord={setKeyWord}
+                                     setOnlyShorts={handleSetCheckboxSavedMovies} setIsLoading={setIsLoading} setKeyWord={setKeyWord}
                                      keyWord={keyWord} savedMovies={savedMovies} isLoading={isLoading}/>
                     </ProtectedRoute>}
                 />

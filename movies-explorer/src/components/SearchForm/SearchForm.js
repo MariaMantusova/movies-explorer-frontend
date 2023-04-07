@@ -18,7 +18,7 @@ function SearchForm(props) {
                        value={props.value || ""} placeholder="Фильм" />
                 <button className="search__button">Найти</button>
             </form>
-            <FilterCheckbox onClick={props.onClick}/>
+            <FilterCheckbox onClick={props.onClick} state={props.state}/>
         </section>
     )
 }
