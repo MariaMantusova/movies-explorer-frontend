@@ -188,13 +188,12 @@ function App() {
     function handleRegister(password, email, name, setData, data) {
         mainApi.registerUser(password, email, name)
             .then((res) => {
-                if (res.statusCode !== 400 || res.statusCode !== 409) {
+                if (!res.message) {
                     setData({
                         ...data
                     });
                     handleLogin(setData, data);
-                }
-                if (res.message) {
+                } else {
                     console.log(res.message);
                 }
             })
