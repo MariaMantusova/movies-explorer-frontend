@@ -45,12 +45,19 @@ function Movies(props) {
         return showedFilms;
     }
 
+    function handleSubmit(evt) {
+        evt.preventDefault();
+
+        props.onSubmit();
+        localStorage.setItem("keyWord", props.keyWord);
+    }
+
     return (
         <>
             <HeaderToMobile/>
             <HeaderBurger/>
             <section className="movies">
-                <SearchForm handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={props.onSubmit}
+                <SearchForm handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={handleSubmit}
                             onClick={props.setOnlyShorts} state="shortsStateMovies"/>
                 <MoviesCardList class="movie__save-button_active" keyWord={props.keyWord} movies={props.moviesFiltered}
                                 isLoading={props.isLoading} savedMovies={props.savedMovies}

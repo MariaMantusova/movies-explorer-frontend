@@ -21,6 +21,7 @@ function App() {
     const [isLoading, setIsLoading] = React.useState(false);
     const [moviesFiltered, setMoviesFiltered] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState("");
+    const [keyWordSaved, setKeyWordSaved] = React.useState("");
     const [updateSuccess, setUpdateSuccess] = React.useState("");
 
     React.useEffect(() => {
@@ -56,6 +57,10 @@ function App() {
 
     function handleKeyWordChange(e) {
         setKeyWord(e.target.value);
+    }
+
+    function handleKeyWordSavedChange(e) {
+        setKeyWordSaved(e.target.value);
     }
 
     function handleSubmitFilterMovies() {
@@ -187,7 +192,6 @@ function App() {
                     setData({
                         ...data
                     });
-                    console.log(data, "register")
                     handleLogin(setData, data);
                 }
                 if (res.message) {
@@ -215,9 +219,9 @@ function App() {
     }
 
     function handleLogOut() {
-        setAuthorized(false);
         setCurrentUser({});
-        localStorage.removeItem('jwt');
+        setAuthorized(false);
+        localStorage.clear();
         navigate("/", {replace: true});
         tokenCheck();
     }
@@ -274,9 +278,9 @@ function App() {
                 />
                 <Route path="/saved-movies" element={
                     <ProtectedRoute authorized={authorized}>
-                        <SavedMovies handleKeyChange={handleKeyWordChange} onDeleteClick={handleDeleteMovie}
-                                     setOnlyShorts={handleSetCheckboxSavedMovies} setIsLoading={setIsLoading} setKeyWord={setKeyWord}
-                                     keyWord={keyWord} savedMovies={savedMovies} isLoading={isLoading}/>
+                        <SavedMovies handleKeyChange={handleKeyWordSavedChange} onDeleteClick={handleDeleteMovie}
+                                     setOnlyShorts={handleSetCheckboxSavedMovies} setIsLoading={setIsLoading} setKeyWord={setKeyWordSaved}
+                                     keyWord={keyWordSaved} savedMovies={savedMovies} isLoading={isLoading}/>
                     </ProtectedRoute>}
                 />
                 <Route path="/profile" element={
