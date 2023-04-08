@@ -42,18 +42,18 @@ function App() {
             .catch((err) => console.log(err))
     }, [authorized]);
 
-    React.useEffect(() => {
-        authorized && mainApi.getSavedMovies()
+    function getSavedMovies() {
+        mainApi.getSavedMovies()
             .then((moviesList) => {
                 moviesList.filter((movie) => {
-                   if (movie.owner === currentUser._id) {
-                       return
-                   }
+                    if (movie.owner === currentUser._id) {
+                        return
+                    }
                 })
                 setSavedMovies(moviesList);
             })
             .catch((err) => console.log(err))
-    }, [authorized]);
+    }
 
     function handleKeyWordChange(e) {
         setKeyWord(e.target.value);
@@ -210,6 +210,7 @@ function App() {
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
                     tokenCheck();
+                    getSavedMovies();
                 }
                 navigate("/movies", {replace: true});
             })
@@ -220,8 +221,14 @@ function App() {
 
     function handleLogOut() {
         setCurrentUser({});
+        setKeyWordSaved("");
+        setKeyWord("");
+        setMoviesFiltered([]);
+        setMovies([]);
+        setSavedMovies([]);
         setAuthorized(false);
         localStorage.clear();
+        mainApi.setToken("")
         navigate("/", {replace: true});
         tokenCheck();
     }
@@ -280,7 +287,7 @@ function App() {
                     <ProtectedRoute authorized={authorized}>
                         <SavedMovies handleKeyChange={handleKeyWordSavedChange} onDeleteClick={handleDeleteMovie}
                                      setOnlyShorts={handleSetCheckboxSavedMovies} setIsLoading={setIsLoading} setKeyWord={setKeyWordSaved}
-                                     keyWord={keyWordSaved} savedMovies={savedMovies} isLoading={isLoading}/>
+                                     keyWord={keyWordSaved} savedMovies={savedMovies} isLoading={isLoading} onOpeningPage={getSavedMovies}/>
                     </ProtectedRoute>}
                 />
                 <Route path="/profile" element={

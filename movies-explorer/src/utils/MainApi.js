@@ -178,6 +178,10 @@ class MainApi {
         return ''
     }
 
+    setToken(token) {
+        this._token = token
+    }
+
 }
 
 const mainApiOption = {
