@@ -210,8 +210,8 @@ function App() {
                     localStorage.setItem('jwt', res.token);
                     tokenCheck();
                     getSavedMovies();
+                    navigate('movies');
                 }
-                navigate("/movies", {replace: true});
             })
             .catch((err) => {
                 console.log(err);
@@ -270,6 +270,7 @@ function App() {
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <Routes>
+                <Route path="/" element={<Main isAuthorized={authorized}/>}/>
                 <Route path="/sign-in"
                        element={<Login handleLogin={handleLogin}/>}/>
                 <Route path="/sign-up" element={<Register handleRegister={handleRegister}/>}>
@@ -294,7 +295,6 @@ function App() {
                         <Profile onChangingInfo={handleUpdateUser} onLogOut={handleLogOut} isUpdateSuccess={updateSuccess}/>
                     </ProtectedRoute>}
                 />
-                <Route exact path="/" element={<Main isAuthorized={authorized}/>}/>
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>
         </CurrentUserContext.Provider>

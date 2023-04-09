@@ -1,9 +1,12 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 function ProtectedRoute({ authorized, children }) {
+    const navigate = useNavigate();
+
     if (!authorized) {
-        return <Navigate to="/" replace />
+        return navigate('/')
     }
+
     return children
 }
 export default ProtectedRoute;
