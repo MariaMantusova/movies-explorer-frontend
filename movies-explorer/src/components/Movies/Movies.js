@@ -19,8 +19,12 @@ function Movies(props) {
     }, []);
 
     React.useEffect(() => {
-        props.setMoviesFiltered(filterMoviesClass);
-        console.log()
+        if (localStorage.getItem("keyWord") !== null) {
+            props.setMoviesFiltered(filterMoviesClass);
+
+        } else {
+            props.setMoviesFiltered(props.moviesFiltered)
+        }
     }, [props.savedMovies])
 
     function filterMoviesClass() {
