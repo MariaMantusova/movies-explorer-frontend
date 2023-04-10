@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="movies-explorer" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="movies-explorer">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/movies-explorer-frontend" local="$PROJECT_DIR$/movies-explorer/build" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -6,14 +6,63 @@ import Footer from "../Footer/Footer";
 import HeaderToMobile from "../Header/HeaderToMobile";
 import HeaderBurger from "../Header/HeaderBurger";
 
-function SavedMovies() {
+function SavedMovies(props) {
+    const [savedMoviesFiltered, setSavedMoviesFiltered] = React.useState([]);
+
+    React.useEffect(() => {
+        props.onOpeningPage();
+        setSavedMoviesFiltered(props.savedMovies);
+        props.setKeyWord("");
+        localStorage.removeItem("shortsStateSavedMovies")
+    }, [])
+
+    React.useEffect(() => {
+        setSavedMoviesFiltered(savedMoviesFilter)
+    }, [props.savedMovies])
+
+    React.useEffect(() => {
+        setSavedMoviesFiltered(savedMoviesFilter)
+    }, [props.setOnlyShorts])
+
+    function handleSubmitFilterSavedMovies() {
+        props.setIsLoading(true);
+        setSavedMoviesFiltered(savedMoviesFilter)
+        props.setIsLoading(false);
+    }
+
+    function savedMoviesFilter() {
+        let savedFilteredMovies = []
+
+        props.savedMovies.forEach((movie) => {
+            if (movie.nameRU.toLowerCase().includes(props.keyWord.toLowerCase()) || movie.nameEN.toLowerCase().includes(props.keyWord.toLowerCase())
+                || movie.director.toLowerCase().includes(props.keyWord.toLowerCase())
+                || movie.description.toLowerCase().includes(props.keyWord.toLowerCase())) {
+                savedFilteredMovies.push(movie);
+
+                if (localStorage.getItem("shortsStateSavedMovies") !== null) {
+                    savedFilteredMovies = savedFilteredMovies.filter((movie) => movie.duration <= 40)
+                }
+            }
+        })
+
+        return savedFilteredMovies;
+    }
+
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+
+        handleSubmitFilterSavedMovies();
+    }
+
+
     return (
         <>
             <HeaderToMobile/>
             <HeaderBurger/>
             <section className="saved-movies">
-                <SearchForm/>
-                <MoviesCardList class="movie__save-button_delete"/>
+                <SearchForm onClick={props.setOnlyShorts} state="shortsStateSavedMovies" handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={handleSubmit}/>
+                <MoviesCardList class="movie__save-button_delete" state={props.keyWordSaved !== ""} keyWordSaved={props.keyWordSaved} onDelete={props.onDeleteClick} movies={savedMoviesFiltered} isLoading={props.isLoading}/>
             </section>
             <Footer/>
         </>
