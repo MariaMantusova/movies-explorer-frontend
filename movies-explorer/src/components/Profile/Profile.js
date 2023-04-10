@@ -16,8 +16,15 @@ function Profile(props) {
     const emailValid = useInput('', {isEmpty: false, isEmail: true});
 
     React.useEffect(() => {
+        setName(currentUser.name);
+        setEmail(currentUser.email);
+    }, [])
+
+    React.useEffect(() => {
         nameValid.value = currentUser.name;
         emailValid.value = currentUser.email;
+        setName(currentUser.name);
+        setEmail(currentUser.email);
     }, [currentUser]);
 
     React.useEffect(() => {
