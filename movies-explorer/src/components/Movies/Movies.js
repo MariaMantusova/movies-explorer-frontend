@@ -9,13 +9,19 @@ import HeaderBurger from "../Header/HeaderBurger";
 function Movies(props) {
     React.useEffect(() => {
         if (localStorage.getItem("keyWord") !== null) {
+            props.onOpeningPage();
+            props.setMoviesFiltered(filterMoviesClass);
             props.setKeyWord(localStorage.getItem("keyWord"));
             localStorage.getItem("shortsStateMovies");
-            props.setMoviesFiltered(filterMoviesClass);
         } else {
             props.setMoviesFiltered(props.moviesFiltered)
         }
     }, []);
+
+    React.useEffect(() => {
+        props.setMoviesFiltered(filterMoviesClass);
+        console.log()
+    }, [props.savedMovies])
 
     function filterMoviesClass() {
         let key = localStorage.getItem("keyWord");
@@ -36,10 +42,12 @@ function Movies(props) {
                     break;
                 }
             }
+
             if (!isFilmFound) {
                 movie.savedId = ""
                 showedFilms.push(movie);
             }
+
         })
 
         return showedFilms;
@@ -59,7 +67,8 @@ function Movies(props) {
             <section className="movies">
                 <SearchForm handleChange={props.handleKeyChange} value={props.keyWord} onSubmit={handleSubmit}
                             onClick={props.setOnlyShorts} state="shortsStateMovies"/>
-                <MoviesCardList class="movie__save-button_active" keyWord={props.keyWord} movies={props.moviesFiltered}
+                <MoviesCardList class="movie__save-button_active" keyWord={props.keyWord}
+                                movies={props.moviesFiltered}
                                 isLoading={props.isLoading} savedMovies={props.savedMovies}
                                 saveMovie={props.onSaveClick}/>
             </section>

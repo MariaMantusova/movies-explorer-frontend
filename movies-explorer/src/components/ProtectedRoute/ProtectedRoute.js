@@ -1,12 +1,10 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-function ProtectedRoute({ authorized, children }) {
-    const navigate = useNavigate();
-
-    if (!authorized) {
-        return navigate('/')
+import { Navigate} from "react-router-dom"
+function ProtectedRoute(props) {
+    if (!props.isAuthorized) {
+       return <Navigate to="/" />
     }
 
-    return children
+    return props.children;
 }
 export default ProtectedRoute;

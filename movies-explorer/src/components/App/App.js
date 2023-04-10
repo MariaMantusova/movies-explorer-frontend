@@ -11,6 +11,7 @@ import Register from "../Register/Register";
 import {mainApi} from "../../utils/MainApi";
 import Login from "../Login/Login";
 import {moviesApi} from "../../utils/MoviesApi";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
     const navigate = useNavigate();
@@ -19,10 +20,20 @@ function App() {
     const [movies, setMovies] = React.useState([]);
     const [savedMovies, setSavedMovies] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(false);
+    const [isBusy, setIsBusy] = React.useState(true);
     const [moviesFiltered, setMoviesFiltered] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState("");
     const [keyWordSaved, setKeyWordSaved] = React.useState("");
     const [updateSuccess, setUpdateSuccess] = React.useState("");
+
+    React.useEffect(() => {
+        const jwt = localStorage.getItem('jwt');
+        if (!jwt) {
+            setIsBusy(false)
+            return
+        }
+        tokenCheck();
+    },[])
 
     React.useEffect(() => {
         authorized && mainApi.getUserInfo()
@@ -210,7 +221,7 @@ function App() {
                     localStorage.setItem('jwt', res.token);
                     tokenCheck();
                     getSavedMovies();
-                    navigate('movies');
+                    navigate('/movies');
                 }
             })
             .catch((err) => {
@@ -232,13 +243,10 @@ function App() {
         tokenCheck();
     }
 
-    React.useEffect(() => {
-        tokenCheck();
-    },[])
-
     function tokenCheck() {
         const jwt = localStorage.getItem('jwt');
         if (jwt) {
+            setIsBusy(true)
             mainApi.validityCheck(jwt)
                 .then((res) => {
                     if (res) {
@@ -246,6 +254,9 @@ function App() {
                     }
                 })
                 .catch((err) => console.log(err))
+                .finally(() => {
+                    setIsBusy(false)
+                })
         }
     }
 
@@ -268,36 +279,49 @@ function App() {
     }
 
     return (
-        <CurrentUserContext.Provider value={currentUser}>
-            <Routes>
-                <Route path="/" element={<Main isAuthorized={authorized}/>}/>
-                <Route path="/sign-in"
-                       element={<Login handleLogin={handleLogin}/>}/>
-                <Route path="/sign-up" element={<Register handleRegister={handleRegister}/>}>
-                </Route>
-                <Route path="/movies" element={
-                    <ProtectedRoute authorized={authorized}>
-                        <Movies onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange} savedMovies={savedMovies}
-                                setOnlyShorts={handleSetCheckboxMovies} setKeyWord={setKeyWord}
-                                keyWord={keyWord} moviesFiltered={moviesFiltered} setMoviesFiltered={setMoviesFiltered} isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
-                        />
-                    </ProtectedRoute>}
-                />
-                <Route path="/saved-movies" element={
-                    <ProtectedRoute authorized={authorized}>
-                        <SavedMovies handleKeyChange={handleKeyWordSavedChange} onDeleteClick={handleDeleteMovie}
-                                     setOnlyShorts={handleSetCheckboxSavedMovies} setIsLoading={setIsLoading} setKeyWord={setKeyWordSaved}
-                                     keyWord={keyWordSaved} savedMovies={savedMovies} isLoading={isLoading} onOpeningPage={getSavedMovies}/>
-                    </ProtectedRoute>}
-                />
-                <Route path="/profile" element={
-                    <ProtectedRoute authorized={authorized}>
-                        <Profile onChangingInfo={handleUpdateUser} onLogOut={handleLogOut} isUpdateSuccess={updateSuccess}/>
-                    </ProtectedRoute>}
-                />
-                <Route path="*" element={<ErrorPage/>}/>
-            </Routes>
-        </CurrentUserContext.Provider>
+        <>
+            {
+                isBusy ? <Preloader/> :
+                    <CurrentUserContext.Provider value={currentUser}>
+                        <Routes>
+                            <Route path="/" element={<Main isAuthorized={authorized}/>}/>
+                            <Route path="/sign-in"
+                                   element={<Login handleLogin={handleLogin}/>}/>
+                            <Route path="/sign-up" element={<Register handleRegister={handleRegister}/>}>
+                            </Route>
+                            <Route path="/movies" element={
+                                <ProtectedRoute isAuthorized={authorized} path="/movies">
+                                    <Movies onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange}
+                                            savedMovies={savedMovies}
+                                            setOnlyShorts={handleSetCheckboxMovies} setKeyWord={setKeyWord}
+                                            keyWord={keyWord} moviesFiltered={moviesFiltered}
+                                            setMoviesFiltered={setMoviesFiltered} onOpeningPage={getSavedMovies}
+                                            isLoading={isLoading} onSubmit={handleSubmitFilterMovies}
+                                    />
+                                </ProtectedRoute>}
+                            />
+                            <Route path="/saved-movies" element={
+                                <ProtectedRoute isAuthorized={authorized} path="/saved-movies">
+                                    <SavedMovies handleKeyChange={handleKeyWordSavedChange}
+                                                 onDeleteClick={handleDeleteMovie}
+                                                 setOnlyShorts={handleSetCheckboxSavedMovies}
+                                                 setIsLoading={setIsLoading}
+                                                 setKeyWord={setKeyWordSaved}
+                                                 keyWord={keyWordSaved} savedMovies={savedMovies} isLoading={isLoading}
+                                                 onOpeningPage={getSavedMovies}/>
+                                </ProtectedRoute>}
+                            />
+                            <Route path="/profile" element={
+                                <ProtectedRoute isAuthorized={authorized} path="/profile">
+                                    <Profile onChangingInfo={handleUpdateUser} onLogOut={handleLogOut}
+                                             isUpdateSuccess={updateSuccess}/>
+                                </ProtectedRoute>}
+                            />
+                            <Route path="*" element={<ErrorPage/>}/>
+                        </Routes>
+                    </CurrentUserContext.Provider>
+            }
+        </>
     );
 }
 
