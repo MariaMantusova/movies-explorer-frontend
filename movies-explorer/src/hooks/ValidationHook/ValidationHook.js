@@ -52,7 +52,6 @@ const useInput = (initialValue, validations) => {
 
     const onChange = (evt) => {
         setValue(evt.target.value)
-
     }
 
     const onBlur = () => {

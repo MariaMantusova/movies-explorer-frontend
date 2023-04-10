@@ -12,8 +12,8 @@ function Profile(props) {
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [disableButton, setDisableButton] = React.useState(false);
-    const nameValid = useInput('', {isEmpty: false, isName: true});
-    const emailValid = useInput('', {isEmpty: false, isEmail: true});
+    const nameValid = useInput(name, {isEmpty: false, isName: true});
+    const emailValid = useInput(email, {isEmpty: false, isEmail: true});
 
     React.useEffect(() => {
         setName(currentUser.name);
@@ -47,6 +47,7 @@ function Profile(props) {
         evt.preventDefault();
 
         props.onChangingInfo(name, email);
+        setDisableButton(true);
     }
 
     return (
