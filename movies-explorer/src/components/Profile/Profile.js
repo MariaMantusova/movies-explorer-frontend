@@ -9,8 +9,8 @@ import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 
 function Profile(props) {
     const currentUser = React.useContext(CurrentUserContext);
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
+    const [name, setName] = React.useState('name');
+    const [email, setEmail] = React.useState('email@mail.ru');
     const [disableButton, setDisableButton] = React.useState(false);
     const nameValid = useInput(name, {isEmpty: false, isName: true});
     const emailValid = useInput(email, {isEmpty: false, isEmail: true});
@@ -36,10 +36,10 @@ function Profile(props) {
     }, [emailValid.value])
 
     React.useEffect(() => {
-        if (nameValid.value === currentUser.name || emailValid.value === currentUser.email) {
-            setDisableButton(true)
-        } else {
+        if (nameValid.value !== currentUser.name || emailValid.value !== currentUser.email) {
             setDisableButton(false)
+        } else {
+            setDisableButton(true)
         }
     }, [nameValid.value, emailValid.value])
 
@@ -74,7 +74,7 @@ function Profile(props) {
                                pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$"
                                onChange={emailValid.onChange} onBlur={emailValid.onBlur} value={email}/>
                     </div>
-                    <button className={`profile__button ${disableButton && "profile__button_type_disabled"}`} disabled={disableButton}>Редактировать</button>
+                    <button className={`profile__button ${(disableButton || !emailValid.inputValid || !nameValid.inputValid) && "profile__button_type_disabled"}`} disabled={disableButton || !emailValid.inputValid || !nameValid.inputValid}>Редактировать</button>
                 </form>
                 <Link to="/" className="profile__link" onClick={props.onLogOut}>Выйти из аккаунта</Link>
             </section>
