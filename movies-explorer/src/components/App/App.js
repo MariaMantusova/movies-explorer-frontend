@@ -12,6 +12,7 @@ import {mainApi} from "../../utils/MainApi";
 import Login from "../Login/Login";
 import {moviesApi} from "../../utils/MoviesApi";
 import Preloader from "../Preloader/Preloader";
+import ProtectedRouteAuth from "../ProtectedRouteAuth/ProtectedRouteAuth";
 
 function App() {
     const navigate = useNavigate();
@@ -286,11 +287,20 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Main isAuthorized={authorized}/>}/>
                             <Route path="/sign-in"
-                                   element={<Login handleLogin={handleLogin}/>}/>
-                            <Route path="/sign-up" element={<Register handleRegister={handleRegister}/>}>
+                                   element={
+                                       <ProtectedRouteAuth isAuthorized={authorized}>
+                                           <Login handleLogin={handleLogin}
+                                           />
+                                       </ProtectedRouteAuth>}>
+                            </Route>
+                            <Route path="/sign-up"
+                                   element={
+                                       <ProtectedRouteAuth isAuthorized={authorized}>
+                                           <Register handleRegister={handleRegister}/>
+                                       </ProtectedRouteAuth>}>
                             </Route>
                             <Route path="/movies" element={
-                                <ProtectedRoute isAuthorized={authorized} path="/movies">
+                                <ProtectedRoute isAuthorized={authorized}>
                                     <Movies onSaveClick={handleMovieSave} handleKeyChange={handleKeyWordChange}
                                             savedMovies={savedMovies}
                                             setOnlyShorts={handleSetCheckboxMovies} setKeyWord={setKeyWord}
