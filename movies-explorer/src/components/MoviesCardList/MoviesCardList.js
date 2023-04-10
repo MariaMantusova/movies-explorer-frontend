@@ -24,7 +24,7 @@ function MoviesCardList(props) {
 
     const lastMovieIndex = currentPage * moviesPerPage;
     const currentMovie = props.movies.slice(0, lastMovieIndex);
-    const lastPage = Math.ceil(props.movies.length / 7)
+    const lastPage = Math.ceil(props.movies.length / moviesPerPage)
 
     function paginate() {
         setCurrentPage(prevState => prevState + 1);
@@ -32,7 +32,9 @@ function MoviesCardList(props) {
 
     return (
         <section className="movies">
-            {props.movies.length <= 0 && !props.isLoading && <h2 className="movies__text">Не найдено фильмов для отображения</h2>}
+            {props.children}
+            {props.movies.length <= 0 && !props.isLoading && props.keyWordSaved === "" && <h2 className="movies__text">Вы еще не сохраняли фильмы</h2>}
+            {props.movies.length <= 0 && !props.isLoading && props.state && <h2 className="movies__text">Не найдено фильмов для отображения</h2>}
             {props.isLoading && <Preloader/>}
             <ul className="movies__items">
                 {currentMovie.map((movie, index) => (

@@ -21,7 +21,6 @@ function Movies(props) {
     React.useEffect(() => {
         if (localStorage.getItem("keyWord") !== null) {
             props.setMoviesFiltered(filterMoviesClass);
-
         } else {
             props.setMoviesFiltered(props.moviesFiltered)
         }
@@ -62,6 +61,9 @@ function Movies(props) {
 
         props.onSubmit();
         localStorage.setItem("keyWord", props.keyWord);
+        if (localStorage.getItem("keyWord") === "") {
+            localStorage.removeItem("keyWord")
+        }
     }
 
     return (
@@ -74,7 +76,10 @@ function Movies(props) {
                 <MoviesCardList class="movie__save-button_active" keyWord={props.keyWord}
                                 movies={props.moviesFiltered}
                                 isLoading={props.isLoading} savedMovies={props.savedMovies}
-                                saveMovie={props.onSaveClick}/>
+                                saveMovie={props.onSaveClick} state={localStorage.getItem("keyWord") !== null}>
+                    {props.moviesFiltered.length <= 0 && !props.isLoading && localStorage.getItem("keyWord") === null &&
+                    <h2 className="movies__text">Вы еще не искали фильмы</h2>}
+                </MoviesCardList>
             </section>
             <Footer/>
         </>

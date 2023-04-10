@@ -316,7 +316,7 @@ function App() {
                                                  onDeleteClick={handleDeleteMovie}
                                                  setOnlyShorts={handleSetCheckboxSavedMovies}
                                                  setIsLoading={setIsLoading}
-                                                 setKeyWord={setKeyWordSaved}
+                                                 setKeyWord={setKeyWordSaved} keyWordSaved={keyWordSaved}
                                                  keyWord={keyWordSaved} savedMovies={savedMovies} isLoading={isLoading}
                                                  onOpeningPage={getSavedMovies}/>
                                 </ProtectedRoute>}
