@@ -36,7 +36,7 @@ function Profile(props) {
     }, [emailValid.value])
 
     React.useEffect(() => {
-        if (nameValid.value === currentUser.name && emailValid.value === currentUser.email) {
+        if (nameValid.value === currentUser.name || emailValid.value === currentUser.email) {
             setDisableButton(true)
         } else {
             setDisableButton(false)
@@ -60,7 +60,8 @@ function Profile(props) {
                     {(nameValid.isDirty && nameValid.isEmpty) && <p className="auth__input-error">Поле не может быть пустым</p>}
                     {(nameValid.isDirty && nameValid.nameError && !nameValid.isEmpty) && <p className="auth__input-error">Данное имя нельзя использовать</p>}
                     <div className="profile__input-container profile__input-container_type_top">
-                        <label className="profile__label">Имя</label>
+                        <label className="profile__label">Имя
+                        </label>
                         <input className="profile__input" name="name" pattern="^[a-zа-яёA-ZА-ЯЁ\-\s/i]+" type="text"
                                onChange={nameValid.onChange} onBlur={nameValid.onBlur} value={name}/>
                     </div>
@@ -72,7 +73,7 @@ function Profile(props) {
                                pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$"
                                onChange={emailValid.onChange} onBlur={emailValid.onBlur} value={email}/>
                     </div>
-                    <button className={`profile__button ${(!nameValid.inputValid || !emailValid.inputValid || disableButton) && "profile__button_type_disabled"}`} disabled={!nameValid.inputValid || !emailValid.inputValid || disableButton}>Редактировать</button>
+                    <button className={`profile__button ${disableButton && "profile__button_type_disabled"}`} disabled={disableButton}>Редактировать</button>
                 </form>
                 <Link to="/" className="profile__link" onClick={props.onLogOut}>Выйти из аккаунта</Link>
             </section>
